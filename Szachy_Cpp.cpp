@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "Figury/Figury.h"
 
 int main()
 {
