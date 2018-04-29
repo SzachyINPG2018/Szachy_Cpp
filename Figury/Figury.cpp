@@ -7,12 +7,10 @@
 
 #include "Figury.h"
 
-Figury::Figury() {
-	// TODO Auto-generated constructor stub
+Figury::Figury(int x, int y, int team, int type) : _x(x), _y(y), _team(team), _type(type)
+{
+	if(type == 1) ;
 
-}
-
-Figury::~Figury() {
-	// TODO Auto-generated destructor stub
+	//
 }
 
