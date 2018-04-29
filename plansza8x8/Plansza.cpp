@@ -7,8 +7,3 @@
 
 #include "Plansza.h"
 
-Plansza::Plansza() {
-	// TODO Auto-generated constructor stub
-
-}
-

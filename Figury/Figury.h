@@ -11,6 +11,7 @@
 class Figury
 {
 public:
+	Figury();
 	Figury(int x, int y, int team, int type);
 
 	void set_xy(int x, int y) { _x = x; _y = y;}
@@ -32,43 +33,57 @@ private:
 * 3 Wieza
 * 4 Goniec
 * 5 Skoczek
-* 6 Pion
+* 6 Pionek
 */
-class Krol : public Figury
+
+enum figury
 {
-public:
-	Krol(int x, int y, int team) : Figury(x, y, team, 1) {}
+	Krol,
+	Hetman,
+	Wieza,
+	Goniec,
+	Skoczek,
+	Pionek,
 };
 
-class Hetman : public Figury
-{
-public:
-	Hetman(int x, int y, int team) : Figury(x, y, team, 2) {}
-};
 
-class Wieza : public Figury
-{
-public:
-	Wieza(int x, int y, int team) : Figury(x, y, team, 3) {}
-};
-
-class Goniec : public Figury
-{
-public:
-	Goniec(int x, int y, int team) : Figury(x, y, team, 4) {}
-};
-
-class Skoczek : public Figury
-{
-public:
-	Skoczek(int x, int y, int team) : Figury(x, y, team, 5) {}
-};
-
-class Pionek : public Figury
-{
-public:
-	Pionek(int x, int y, int team) : Figury(x, y, team, 6) {}
-};
+//Zamiast tego typ wyliczeniowy enum
+//-----------------------------------------------------------
+//class Krol : public Figury
+//{
+//public:
+//	Krol(int x, int y, int team) : Figury(x, y, team, 1) {}
+//};
+//
+//class Hetman : public Figury
+//{
+//public:
+//	Hetman(int x, int y, int team) : Figury(x, y, team, 2) {}
+//};
+//
+//class Wieza : public Figury
+//{
+//public:
+//	Wieza(int x, int y, int team) : Figury(x, y, team, 3) {}
+//};
+//
+//class Goniec : public Figury
+//{
+//public:
+//	Goniec(int x, int y, int team) : Figury(x, y, team, 4) {}
+//};
+//
+//class Skoczek : public Figury
+//{
+//public:
+//	Skoczek(int x, int y, int team) : Figury(x, y, team, 5) {}
+//};
+//
+//class Pionek : public Figury
+//{
+//public:
+//	Pionek(int x, int y, int team) : Figury(x, y, team, 6) {}
+//};
 
 
 #endif /* FIGURY_H_ */
