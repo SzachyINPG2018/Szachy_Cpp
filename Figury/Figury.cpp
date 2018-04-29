@@ -18,6 +18,7 @@ Figury::Figury(int x, int y, int team, int type) : _x(x), _y(y), _team(team), _t
 	if(type == 6)	_possible_move = 0b00000001;
 
 }
+
 /*
  *
  * 100000000 	Skoczek
