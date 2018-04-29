@@ -11,7 +11,7 @@
 class Figury
 {
 public:
-	Figury();
+	//Figury();
 	Figury(int x, int y, int team, int type);
 
 	void set_xy(int x, int y) { _x = x; _y = y;}
@@ -27,6 +27,7 @@ private:
 	int _type;
 	int _possible_move;
 };
+
 /*
 * 1 Krol
 * 2 Hetman

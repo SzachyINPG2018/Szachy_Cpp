@@ -5,6 +5,7 @@
  *      Author: Mariusz
  */
 
+
 #ifndef PLANSZA8X8_PLANSZA_H_
 #define PLANSZA8X8_PLANSZA_H_
 
@@ -15,7 +16,6 @@ class Plansza
 public:
 	Plansza();
 
-	void ustaw_standardowe();
 	Figury get_object(int x, int y)				{return _figura[x][y];}
 	void set_object(int x, int y, int team, int type)
 	{
