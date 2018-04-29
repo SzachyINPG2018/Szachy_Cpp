@@ -17,14 +17,14 @@ public:
 	int get_team(void)	{return _team;}
 	int get_x(void) {return _x;}
 	int get_y(void) {return _y;}
-	//int get_possible_move(void) {return _possible_move;}
-	//void set_possible_move();
+	int get_possible_move(void) {return _possible_move;}
+	void set_possible_move();
 
 private:
 	int _x, _y;	//wspolrzedne
 	int _team;	//biale = 0 czy czarne = 1
 	int _type;
-	//int _possible_move;
+	int _possible_move;
 };
 /*
 * 1 Krol
@@ -69,5 +69,6 @@ class Pionek : public Figury
 public:
 	Pionek(int x, int y, int team) : Figury(x, y, team, 6) {}
 };
+
 
 #endif /* FIGURY_H_ */
