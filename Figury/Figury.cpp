@@ -16,7 +16,7 @@ Figury::Figury(int x, int y, int team, int type) : _x(x), _y(y), _team(team), _t
 	if(type == 4)	_probable_move = 0b10101010;
 	if(type == 5)	_probable_move = 0b111111111;
 	if(type == 6)	_probable_move = 0b00000001;
-	_possible_move = _probable_move;
+	_possible_move = _probable_move; //to jest jakiesc niewiadomo co
 }
 
 void calc_possible_move(Figury figura, Figury plansza[][8])
