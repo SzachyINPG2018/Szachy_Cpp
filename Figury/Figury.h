@@ -12,14 +12,14 @@ class Figury
 {
 public:
 	//Figury();
-	Figury(int x, int y, int team, int type);
+	Figury(int x=0, int y=0, int team=0, int type=0);
 
 	void set_xy(int x, int y) { _x = x; _y = y;}
 	int get_team(void)	{return _team;}
 	int get_x(void) {return _x;}
 	int get_y(void) {return _y;}
 	int get_possible_move(void) {return _possible_move;}
-	void set_possible_move();
+	void set_possible_move(Figury _figura, Figury **plansza);
 
 private:
 	int _x, _y;	//wspolrzedne
@@ -39,7 +39,7 @@ private:
 
 enum figury
 {
-	Krol,
+	Krol=1,
 	Hetman,
 	Wieza,
 	Goniec,

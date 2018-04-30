@@ -19,6 +19,11 @@ Figury::Figury(int x, int y, int team, int type) : _x(x), _y(y), _team(team), _t
 
 }
 
+void set_possible_move(Figury figura, Figury plansza[][8])
+{
+
+}
+
 /*
  *
  * 100000000 	Skoczek
