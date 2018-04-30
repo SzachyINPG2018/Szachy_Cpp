@@ -18,14 +18,17 @@ public:
 	int get_team(void)	{return _team;}
 	int get_x(void) {return _x;}
 	int get_y(void) {return _y;}
+	int get_probable_move(void) {return _probable_move;}
 	int get_possible_move(void) {return _possible_move;}
-	void set_possible_move(Figury _figura, Figury **plansza);
-
+	void calc_possible_move(Figury _figura, Figury **plansza); //metoda obliczaj mo¿liwy ruch
+	void set_possible_move(int move)	{_possible_move = move;}	//seter ruchu
 private:
+	int _possible_move;
 	int _x, _y;	//wspolrzedne
 	int _team;	//biale = 0 czy czarne = 1
 	int _type;
-	int _possible_move;
+	int _probable_move;
+
 };
 
 /*
