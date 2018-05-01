@@ -8,6 +8,10 @@
 #ifndef FIGURY_H_
 #define FIGURY_H_
 
+#include <vector>
+
+using std::vector;
+
 class Figury
 {
 public:
@@ -20,7 +24,7 @@ public:
 	int get_y(void) {return _y;}
 	int get_probable_move(void) {return _probable_move;}
 	int get_possible_move(void) {return _possible_move;}
-	void calc_possible_move(Figury _figura, Figury **plansza); //metoda obliczaj mo¿liwy ruch
+	void calc_possible_move(vector<vector<Figury> > _plansza); //metoda obliczaj mo¿liwy ruch
 	void set_possible_move(int move)	{_possible_move = move;}	//seter ruchu
 private:
 	int _possible_move;
@@ -28,6 +32,9 @@ private:
 	int _team;	//biale = 0 czy czarne = 1
 	int _type;
 	int _probable_move;
+	vector<int> _elongation_move;
+	//ruch jest mo¿liwy tylko w 8 kierunkach (skoczek te¿ tylko inaczej)
+	//wiêc zmienna przechowuje o ile dana figura mo¿e siê poruszyc
 
 };
 

@@ -7,21 +7,23 @@
 
 #include "Figury.h"
 
-Figury::Figury(int x, int y, int team, int type) : _x(x), _y(y), _team(team), _type(type)
+Figury::Figury(int x, int y, int team, int type)
+	: _x(x), _y(y), _team(team), _type(type), _elongation_move(8, 0)
 {
 	//--podstawowe ruchy
-	if(type == 1)	_probable_move = 0b11111111;
-	if(type == 2)	_probable_move = 0b11111111;
-	if(type == 3)	_probable_move = 0b1010101;
-	if(type == 4)	_probable_move = 0b10101010;
-	if(type == 5)	_probable_move = 0b111111111;
-	if(type == 6)	_probable_move = 0b00000001;
-	_possible_move = _probable_move; //to jest jakiesc niewiadomo co
+	switch(type)
+	case 1:	_probable_move = 0b11111111;	break;
+	case 2:	_probable_move = 0b11111111;	break;
+	case 3:	_probable_move = 0b1010101;		break;
+	case 4:	_probable_move = 0b10101010;	break;
+	case 5:	_probable_move = 0b111111111;	break;
+	case 6:	_probable_move = 0b00000001;	break;
 }
 
-void calc_possible_move(Figury figura, Figury plansza[][8])
+void Figury::calc_possible_move(vector<vector<Figury> > _plansza)
 {
-	figura.set_possible_move(figura.get_probable_move()); //jakiœ œmiec
+	if(_x==0 || _y==0) return;
+	_possible_move = 0b10000000000; //testowe
 }
 
 /*
