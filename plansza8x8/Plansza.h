@@ -28,9 +28,9 @@ public:
 	void set_object(int x, int y, int team, int type)
 	{
 		_plansza[x][y] = Figury(x, y, team, type);
-		//for(int i=1; i <= _dimension; i++)
-			for(int j=1; j <= _dimension; j++)
-				_plansza[1][j].calc_possible_move(_plansza);
+		for(int i=1; i <= _dimension; i++)
+			for(int j=1; j < _dimension; j++)
+				_plansza[i-1][j-1].calc_possible_move(_plansza);
 	}
 private:
 	vector<vector<Figury> > _plansza;
