@@ -20,6 +20,7 @@ public:
 
 	void set_xy(int x, int y) { _x = x; _y = y;}
 	int get_team(void)	{return _team;}
+	int get_type(void)	{return _type;}
 	int get_x(void) {return _x;}
 	int get_y(void) {return _y;}
 	int get_probable_move(void) {return _probable_move;}

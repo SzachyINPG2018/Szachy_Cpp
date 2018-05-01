@@ -12,7 +12,7 @@ int main()
 	int i=0;
 	plansza1.set_object(1,1,0,Skoczek);
 	i = plansza1.get_object(1,1).get_possible_move();
-	cout << endl << " Hello WORLD "<< i << endl;
+	cout << endl << " Typ figury na polu "<< i << endl;
 	return 0;
 }
 //ok

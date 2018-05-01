@@ -30,18 +30,20 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza)
 	if(_type == 5)
 	{
 		_possible_move = 256;
-		if(_plansza[_x-1][_y+2]._type != 0) _possible_move += 1;
-		if(_plansza[_x+1][_y+2]._type != 0) _possible_move += 2;
-		if(_plansza[_x+2][_y+1]._type != 0) _possible_move += 4;
-		if(_plansza[_x+2][_y-1]._type != 0) _possible_move += 8;
-		if(_plansza[_x+1][_y-2]._type != 0) _possible_move += 16;
-		if(_plansza[_x-1][_y-2]._type != 0) _possible_move += 32;
-		if(_plansza[_x-2][_y-1]._type != 0) _possible_move += 64;
-		if(_plansza[_x-2][_y+1]._type != 0) _possible_move += 128;
+		//do przerobienia na uniwersalny wymiar planszy
+		if(_x>1)	if(_y<7)	if(_plansza[_x-1][_y+2]._type == 0) _possible_move += 1;
+		if(_x<8)	if(_y<7)	if(_plansza[_x+1][_y+2]._type == 0) _possible_move += 2;
+		if(_x<7)	if(_y<8)	if(_plansza[_x+2][_y+1]._type == 0) _possible_move += 4;
+		if(_x<7)	if(_y>1)	if(_plansza[_x+2][_y-1]._type == 0) _possible_move += 8;
+		if(_x<8)	if(_y>2)	if(_plansza[_x+1][_y-2]._type == 0) _possible_move += 16;
+		if(_x>1)	if(_y>2)	if(_plansza[_x-1][_y-2]._type == 0) _possible_move += 32;
+		if(_x>2)	if(_y>1)	if(_plansza[_x-2][_y-1]._type == 0) _possible_move += 64;
+		if(_x>2)	if(_y<8)	if(_plansza[_x-2][_y+1]._type == 0) _possible_move += 128;
+
 	}
 
 
-
+	return;
 }
 
 /*
