@@ -30,7 +30,7 @@ public:
 	//void set_possible_move(int move)	{_possible_move = move;}
 
 	int get_elongation_move(int direction)		{return _elongation_move[direction];}
-	void calc_elongation_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y);
+	//void calc_elongation_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y);
 
 private:
 	int _possible_move;

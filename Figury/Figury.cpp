@@ -27,6 +27,23 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 	if(_x==0 || _y==0) return;
 	_possible_move = 0;
 
+	if(_type == 1)	//krol
+	{
+		_possible_move = 0;
+
+								if(_y < dimension_y)	if(_plansza[_x+0][_y+1]._type == 0) _possible_move += 1;
+		if(_x < dimension_x)	if(_y < dimension_y)	if(_plansza[_x+1][_y+1]._type == 0) _possible_move += 2;
+		if(_x < dimension_x)							if(_plansza[_x+1][_y+0]._type == 0) _possible_move += 4;
+		if(_x < dimension_x)	if(_y > 1)				if(_plansza[_x+1][_y-1]._type == 0) _possible_move += 8;
+								if(_y > 1)				if(_plansza[_x+0][_y-1]._type == 0) _possible_move += 16;
+		if(_x > 1)				if(_y > 1)				if(_plansza[_x-1][_y-1]._type == 0) _possible_move += 32;
+		if(_x > 1)										if(_plansza[_x-1][_y+0]._type == 0) _possible_move += 64;
+		if(_x > 1)				if(_y < dimension_y) 	if(_plansza[_x-1][_y+1]._type == 0) _possible_move += 128;
+
+		for(int i=0; i<8; i++)	_elongation_move[i]=1; //król rusza sie tylko o 1 pole
+	}
+
+
 	if(_type == 5)	//konik
 	{
 		_possible_move = 256;
@@ -40,6 +57,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 		if(_x> 2)				if(_y> 1)				if(_plansza[_x-2][_y-1]._type == 0) _possible_move += 64;
 		if(_x> 2)				if(_y< dimension_y)		if(_plansza[_x-2][_y+1]._type == 0) _possible_move += 128;
 
+		for(int i=0; i<8; i++)	_elongation_move[i]=1;
 	}
 
 
