@@ -24,9 +24,14 @@ public:
 	int get_x(void) {return _x;}
 	int get_y(void) {return _y;}
 	int get_probable_move(void) {return _probable_move;}
+
 	int get_possible_move(void) {return _possible_move;}
-	void calc_possible_move(vector<vector<Figury> > _plansza); //metoda obliczaj mo¿liwy ruch
-	void set_possible_move(int move)	{_possible_move = move;}	//seter ruchu
+	void calc_possible_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y); //metoda obliczaj mo¿liwy ruch
+	//void set_possible_move(int move)	{_possible_move = move;}
+
+	int get_elongation_move(int direction)		{return _elongation_move[direction];}
+	void calc_elongation_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y);
+
 private:
 	int _possible_move;
 	int _x, _y;	//wspolrzedne
@@ -57,45 +62,5 @@ enum figury
 	Skoczek,
 	Pionek,
 };
-
-
-//Zamiast tego typ wyliczeniowy enum
-//-----------------------------------------------------------
-//class Krol : public Figury
-//{
-//public:
-//	Krol(int x, int y, int team) : Figury(x, y, team, 1) {}
-//};
-//
-//class Hetman : public Figury
-//{
-//public:
-//	Hetman(int x, int y, int team) : Figury(x, y, team, 2) {}
-//};
-//
-//class Wieza : public Figury
-//{
-//public:
-//	Wieza(int x, int y, int team) : Figury(x, y, team, 3) {}
-//};
-//
-//class Goniec : public Figury
-//{
-//public:
-//	Goniec(int x, int y, int team) : Figury(x, y, team, 4) {}
-//};
-//
-//class Skoczek : public Figury
-//{
-//public:
-//	Skoczek(int x, int y, int team) : Figury(x, y, team, 5) {}
-//};
-//
-//class Pionek : public Figury
-//{
-//public:
-//	Pionek(int x, int y, int team) : Figury(x, y, team, 6) {}
-//};
-
 
 #endif /* FIGURY_H_ */
