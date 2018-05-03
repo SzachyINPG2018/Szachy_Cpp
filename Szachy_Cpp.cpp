@@ -3,16 +3,23 @@
 #include "Figury/Figury.h"
 #include "plansza8x8/Plansza.h"
 
+//makrodef testowe
+#define XX 5
+#define YY 8
+#define TEAM 0
+
+
 using std::cout;
 using std::endl;
 
 int main()
 {
 	Plansza plansza1(8, 8);
-	int i=0;
-	plansza1.set_object(1,1,0,Skoczek);
-	i = plansza1.get_object(1,1).get_possible_move();
-	cout << endl << " Typ figury na polu "<< i << endl;
+	int i, j;
+	plansza1.set_object(XX,YY,TEAM,Pionek);
+	i = plansza1.get_object(XX,YY).get_possible_move();
+	j = plansza1.get_object(XX,YY).get_elongation_move(Gora);
+	cout << endl << "Ruch: "<< i << "\nMax d³. ruchu: "<< j << endl;
 	return 0;
 }
 //ok

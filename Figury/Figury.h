@@ -32,6 +32,8 @@ public:
 	int get_elongation_move(int direction)		{return _elongation_move[direction];}
 	//void calc_elongation_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y);
 
+	void promote_pawn(void);	//metoda promocji pionu
+
 private:
 	int _possible_move;
 	int _x, _y;	//wspolrzedne
@@ -61,6 +63,18 @@ enum figury
 	Goniec,
 	Skoczek,
 	Pionek,
+};
+
+enum kierunek_ruchu
+{
+	Gora=0,
+	GoraPrawo,
+	Prawo,
+	DolPrawo,
+	Dol,
+	DolLewo,
+	Lewo,
+	GoraLewo,
 };
 
 #endif /* FIGURY_H_ */

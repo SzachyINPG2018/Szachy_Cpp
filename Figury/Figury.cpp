@@ -6,6 +6,7 @@
  */
 
 #include "Figury.h"
+#include <iostream>
 
 Figury::Figury(int x, int y, int team, int type)
 	: _x(x), _y(y), _team(team), _type(type), _elongation_move(8, 0)
@@ -13,19 +14,26 @@ Figury::Figury(int x, int y, int team, int type)
 	//--podstawowe ruchy
 	switch(type)
 	{
-		case 1:	_probable_move = 0b11111111;	break;
+		case 1:	_probable_move = 0b11111111;	break; //krol
 		case 2:	_probable_move = 0b11111111;	break;
 		case 3:	_probable_move = 0b1010101;		break;
 		case 4:	_probable_move = 0b10101010;	break;
 		case 5:	_probable_move = 0b111111111;	break;	//koñ
 		case 6:	_probable_move = 0b00000001;	break;
 	}
+	_possible_move = 0;
 }
 
 void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y)
 {
 	if(_x==0 || _y==0) return;
 	_possible_move = 0;
+
+	if(_type == 6)		//sprawdza czy nie zachodzi promocja
+	{
+		if(_team == 0) if(_y == dimension_y) 	promote_pawn();
+		if(_team == 1) if(_y == 1) 				promote_pawn();
+	}
 
 	if(_type == 1)	//krol
 	{
@@ -60,9 +68,49 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 		for(int i=0; i<8; i++)	_elongation_move[i]=1;
 	}
 
+	if(_type == 6)	//pion
+	{
 
+		if(_team == 0)
+		{
+			_elongation_move[Gora] = 0;
+			_possible_move = (1<<Gora); //zak³ada ¿e bêdzie mo¿liwy ruch do góry
+			if(_y == 2)	if(_plansza[_x][_y+2]._type == 0 && _plansza[_x][_y+1]._type == 0) _elongation_move[Gora] = 2;
+			if(_y != 2)	if(_plansza[_x][_y+1]._type == 0) _elongation_move[Gora] = 1;
+			if(_elongation_move[Gora] == 0) _possible_move = 0; //jednak nie ma ruchu
+		}
+		if(_team == 1)
+		{
+			_elongation_move[Dol] = 0;
+			_possible_move = (1<<Dol); //zak³ada ¿e bêdzie mo¿liwy ruch w dó³
+			if(_y == dimension_y-1)	if(_plansza[_x][_y-2]._type == 0 && _plansza[_x][_y-1]._type == 0) _elongation_move[Dol] = 2;
+			if(_y != dimension_y-1)	if(_plansza[_x][_y-1]._type == 0) _elongation_move[Dol] = 1;
+			if(_elongation_move[Dol] == 0) _possible_move = 0; //jednak nie ma ruchu
+		}
+
+	}
 	return;
 }
+
+void Figury::promote_pawn(void)
+{
+	int i;
+	powtorz:
+	std::cout << "Wybierz typ:\n1.Hetman\n2.Wie¿a\n3.Goniec\n4.Skoczek\n";
+	std::cin >> i;
+	if(i==1) _type = Hetman;
+	else if(i==2) _type = Wieza;
+	else if(i==3) _type = Goniec;
+	else if(i==4) _type = Skoczek;
+	else
+	{
+		std::cout << "\nError, error has³o nie prawid³owe\n";
+		goto powtorz;
+	}
+	return;
+}
+
+
 
 /*
  *

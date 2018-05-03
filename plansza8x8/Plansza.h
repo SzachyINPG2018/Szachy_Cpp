@@ -19,7 +19,7 @@ class Plansza
 
 public:
 	Plansza(int dimension_x, int dimension_y)
-		: _plansza(dimension_x, vector<Figury>(dimension_y)),
+		: _plansza(dimension_x+1, vector<Figury>(dimension_y+1)),
 		  _dimension_x(dimension_x),
 		  _dimension_y(dimension_y)
 		{}
@@ -30,8 +30,8 @@ public:
 	{
 		_plansza[x][y] = Figury(x, y, team, type);
 		for(int i=1; i <= _dimension_x; i++)
-			for(int j=1; j < _dimension_y; j++)
-				_plansza[i-1][j-1].calc_possible_move(_plansza, _dimension_x, _dimension_y);
+			for(int j=1; j <= _dimension_y; j++)
+				_plansza[i][j].calc_possible_move(_plansza, _dimension_x, _dimension_y);
 	}
 private:
 	vector<vector<Figury> > _plansza;
