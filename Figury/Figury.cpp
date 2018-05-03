@@ -48,7 +48,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 		if(_x > 1)										if(_plansza[_x-1][_y+0]._type == 0) _possible_move += 64;
 		if(_x > 1)				if(_y < dimension_y) 	if(_plansza[_x-1][_y+1]._type == 0) _possible_move += 128;
 
-		for(int i=0; i<8; i++)	_elongation_move[i]=1; //król rusza sie tylko o 1 pole
+		for(int i=0;i<8;i++) _elongation_move[i] = ((_possible_move & (1<<i))>>i);
 	}
 
 
@@ -65,7 +65,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 		if(_x> 2)				if(_y> 1)				if(_plansza[_x-2][_y-1]._type == 0) _possible_move += 64;
 		if(_x> 2)				if(_y< dimension_y)		if(_plansza[_x-2][_y+1]._type == 0) _possible_move += 128;
 
-		for(int i=0; i<8; i++)	_elongation_move[i]=1;
+		for(int i=0;i<8;i++) _elongation_move[i] = ((_possible_move & (1<<i))>>i);
 	}
 
 	if(_type == 6)	//pion
@@ -102,6 +102,7 @@ void Figury::promote_pawn(void)
 	else if(i==2) _type = Wieza;
 	else if(i==3) _type = Goniec;
 	else if(i==4) _type = Skoczek;
+	else if(i==5) _type = Krol; 		// tylko testowe
 	else
 	{
 		std::cout << "\nError, error has³o nie prawid³owe\n";
