@@ -34,6 +34,15 @@ public:
 
 	void promote_pawn(void);	//metoda promocji pionu
 
+
+	std::vector<int>::iterator _elongationbegin()
+	{ return _elongation_move.begin(); }
+
+	std::vector<int>::iterator _elongationend()
+	{ return _elongation_move.end(); }
+
+
+
 private:
 	int _possible_move;
 	int _x, _y;	//wspolrzedne
