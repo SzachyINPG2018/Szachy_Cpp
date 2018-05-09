@@ -1,0 +1,115 @@
+include <windows.h>
+
+#include "drzewa.h"
+#include "moves.h"
+//#include "transp.h"
+
+enum ehbmPieces { BM_B_PION_B, BM_B_PION_C, BM_B_WIEZA_B, BM_B_WIEZA_C,
+                  BM_B_SKOCZEK_B, BM_B_SKOCZEK_C, BM_B_GONIEC_B, BM_B_GONIEC_C,
+                  BM_B_HETMAN_B, BM_B_HETMAN_C, BM_B_KROL_B, BM_B_KROL_C,
+                  BM_C_PION_B, BM_C_PION_C, BM_C_WIEZA_B, BM_C_WIEZA_C,
+                  BM_C_SKOCZEK_B, BM_C_SKOCZEK_C, BM_C_GONIEC_B, BM_C_GONIEC_C,
+                  BM_C_HETMAN_B, BM_C_HETMAN_C, BM_C_KROL_B, BM_C_KROL_C,
+                  BM_B_PUSTE, BM_C_PUSTE };   
+
+const char I_BPION = 0;
+const char I_CPION = 1;
+const char I_BWIEZA = 2;
+const char I_CWIEZA = 3;
+const char I_BSKOCZEK = 4;
+const char I_CSKOCZEK = 5;
+const char I_BGONIEC = 6;
+const char I_CGONIEC = 7;
+const char I_BHETMAN = 8;
+const char I_CHETMAN = 9;
+const char I_BKROL = 10;
+const char I_CKROL = 11;
+const char I_PUSTE = 12;
+const char I_ZAJETE = 13;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const char PPos[8][8] =
+  {{I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE }};
+
+// pozycja wyjsciowa
+const char SPos[8][8] =
+  {{I_CWIEZA, I_CSKOCZEK, I_CGONIEC, I_CHETMAN, I_CKROL, I_CGONIEC, I_CSKOCZEK, I_CWIEZA},
+   {I_CPION , I_CPION   , I_CPION  , I_CPION  , I_CPION, I_CPION  , I_CPION   , I_CPION },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_BPION , I_BPION   , I_BPION  , I_BPION  , I_BPION, I_BPION  , I_BPION   , I_BPION },
+   {I_BWIEZA, I_BSKOCZEK, I_BGONIEC, I_BHETMAN, I_BKROL, I_BGONIEC, I_BSKOCZEK, I_BWIEZA}};
+
+// pozycja testowa
+const char TPos[8][8] =
+  {{I_PUSTE , I_PUSTE   , I_BKROL  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_BPION   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_CPION  , I_BHETMAN, I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_CPION , I_CWIEZA  , I_CPION  , I_PUSTE  , I_PUSTE, I_BWIEZA , I_CPION   , I_CPION },
+   {I_CPION , I_PUSTE   , I_CKROL  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_CGONIEC , I_BWIEZA},
+   {I_BPION , I_PUSTE   , I_PUSTE  , I_CWIEZA , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_BPION , I_CSKOCZEK, I_PUSTE  , I_PUSTE  , I_PUSTE, I_CPION  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_BSKOCZEK, I_PUSTE, I_BGONIEC, I_PUSTE   , I_PUSTE }};
+const char T2Pos[8][8] =
+  {{I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_CPION },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_CPION  , I_PUSTE   , I_CKROL },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_BKROL  , I_BHETMAN , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE }};
+const char T3Pos[8][8] =
+  {{I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_BPION  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_BKROL, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_CKROL }};
+   EKolor KolorPrzeciwny(EKolor kolor)
+{
+  switch (kolor) {
+  case C_CZARNE : return C_BIALE;
+  case C_BIALE  : return C_CZARNE;
+  }
+  return C_BRAK;
+}
+
+EKolor KolorBierki(char	bierka)
+{
+  switch (bierka) {
+  case I_PUSTE :
+       return C_BRAK;
+  case I_BPION:	case I_BWIEZA: case I_BSKOCZEK:
+  case I_BGONIEC: case I_BHETMAN: case I_BKROL:
+       return C_BIALE;
+  case I_CPION:	case I_CWIEZA: case I_CSKOCZEK:
+  case I_CGONIEC: case I_CHETMAN: case I_CKROL:
+       return C_CZARNE;	
+  }
+  return C_BRAK;       // dummy return
+
