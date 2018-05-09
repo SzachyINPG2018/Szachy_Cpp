@@ -6,7 +6,7 @@ Kanclerz - figura na polach h1 i h8, poruszająca się jak wieża i skoczek.
 patrz ryzunek szachy80.jpg
 W implementacji kodu należy dopisać jedynie dodatkowe dwa pionki i zwiększyć rozmiar szachownicy.
 przykład implementacji planszy:
-const char PPos[10][10] =
+const char Pos[10][10] =
   {{I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE },
    {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE },
    {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE },
