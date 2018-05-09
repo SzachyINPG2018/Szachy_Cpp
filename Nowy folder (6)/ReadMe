@@ -1,4 +1,0 @@
-szachy na 4 osoby różnią się od normalnych szachów 8x8 tylko 2 dodatkowymi żądkami( o długości 8) na każdym z boków. Patrz rysunek Four-handed_chess.png
-Istnieją 3 różne rodzaje plansz do szachów na 3 osoby.
-Szachy na 4 osoby mogą mieć 2 różniącen się modele plansz.
-napisanie programu w cpp okazało się trudniejszę niż myślałem.
