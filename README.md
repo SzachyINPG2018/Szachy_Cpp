@@ -28,7 +28,7 @@ Roszada (król idzie o dwa pola w lewo lub prawo, a wieża przeskakuje króla) w
 - król nie jest pod szachem;
 - król nie przeskoczy przez pole szachowane, ani nie stanie pod szachem po zakończeniu roszady.
 
-2. SZACHY HEKSAGONALNE // CHYBA O TO CHODZIŁO W BACKLOG: "baza różnych kształtów planszy (ile pól, jak opisywać położenie pionka na danej planszy, jeśli jest wielokątem, określenie sposobu poruszania się)" ?
+2. SZACHY HEKSAGONALNE : "baza różnych kształtów planszy (ile pól, jak opisywać położenie pionka na danej planszy, jeśli jest wielokątem, określenie sposobu poruszania się)" ?
 
 Szachownica ma 91 pól w trzech kolorach: ciemnym, jasnym i pośrednim (pól pośrednich jest 31, pól jasnych i ciemnych po 30). Na szachownicy jest 11 pionowych rzędów (kolumn), mają one oznaczenia od A do L (J nie jest używane). Skośne rzędy na szachownicy są ponumerowane od 1 do 11. Rząd F dzieli szachownicę na dwie połowy; lewą hetmana (rzędy od A do E) oraz prawą króla (rzędy od G do L). Zawodnicy mają do dyspozycji dwa komplety figur, każdy po 18 figur: 1 król, 1 hetman (królowa), 2 wieże, 3 gońce, 2 skoczki i 9 pionów. Grę rozpoczyna zawodnik z białymi figurami. Dwoma kluczowymi zasadami są: 
 1. Nie można bić króla.
