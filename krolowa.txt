@@ -1,3 +1,12 @@
+bool mozliwy_ruch(int z_rzedu, int z_kolumny, int do_rzedu, int do_kolumny)
+{
+    if (z_rzedu == do_rzedu && z_kolumny == do_kolumny)
+        return false;
+
+    if (pozycja(do_rzedu, do_kolumny) != PUSTY)
+        return false;
+}
+
 bool wykrywanie_zajetych_pol(int z_rzedu, int z_kolumny, int do_rzedu, int do_kolumny)
 {
 int i;
@@ -14,6 +23,8 @@ if (z_rzedu == do_rzedu) { // OŒ Y
         for (i = z_rzedu + os_y; i != do_rzedu; i += os_y){
             if (pozycja(i, z_kolumny) != PUSTY) return false;
     } else return false;
+
+
 
     return true;
 }
