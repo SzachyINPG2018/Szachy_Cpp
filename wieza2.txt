@@ -1,0 +1,17 @@
+bool wykrywanie_zajetych_pol(int z_rzedu, int z_kolumny, int do_rzedu, int do_kolumny)
+{
+if (z_rzedu == do_rzedu) { // OŒ Y
+   int os_x= (z_kolumny < do_kolumny) ? return true : return false;
+
+    for (i = z_kolumny + os_x; i != do_kolumny; i += os_x){
+         if (pozycja(z_rzedu, i) != PUSTY) return false;
+
+    } else if (z_kolumny == do_kolumny) { // OŒ X
+        int os_y = (z_rzedu < do_rzedu) ? return true : return false;
+
+        for (i = z_rzedu + os_y; i != do_rzedu; i += os_y){
+            if (pozycja(i, z_kolumny) != PUSTY) return false;
+    } else return false;
+
+    return true;
+}
