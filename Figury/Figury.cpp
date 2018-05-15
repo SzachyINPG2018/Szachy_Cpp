@@ -129,6 +129,91 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 
 	}
 
+	if(_type == 3)	//wieza
+	{
+		_possible_move = 0;
+
+		std::fill(_elongationbegin(), _elongationend(), 0);
+
+		int x = _x , y = _y;
+
+		while(y <= dimension_y)
+		{
+			y++;
+			if(_plansza[x][y]._type == 0) _elongation_move[Gora]++;
+		}
+
+		x =_x; y = _y;
+
+		while(x <= dimension_x)
+		{
+			x++;
+			if(_plansza[x][y]._type == 0) _elongation_move[Prawo]++;
+		}
+
+		x =_x; y = _y;
+
+		while( y>0)
+		{
+			y--;
+			if(_plansza[x][y]._type == 0) _elongation_move[Dol]++;
+		}
+
+		x =_x; y = _y;
+
+		while( x>0)
+		{
+			x--;
+			if(_plansza[x][y]._type == 0) _elongation_move[Lewo]++;
+		}
+
+		for(int i=1;i<8; i++)	if(_elongation_move[i]!=0) _possible_move += (1<<i);
+
+	}
+
+
+	if(_type == 4)	//goniec
+	{
+		_possible_move = 0;
+
+		std::fill(_elongationbegin(), _elongationend(), 0);
+
+		int x = _x , y = _y;
+
+		while(x <= dimension_x && y <= dimension_y)
+		{
+			x++;	y++;
+			if(_plansza[x][y]._type == 0) _elongation_move[GoraPrawo]++;
+		}
+
+		x =_x; y = _y;
+
+		while(x <= dimension_x && y>0)
+		{
+			x++; y--;
+			if(_plansza[x][y]._type == 0) _elongation_move[DolPrawo]++;
+		}
+
+		x =_x; y = _y;
+
+		while( x>0 && y>0)
+		{
+			x--; y--;
+			if(_plansza[x][y]._type == 0) _elongation_move[DolLewo]++;
+		}
+
+		x =_x; y = _y;
+
+		while( x>0 && y <= dimension_y)
+		{
+			x--; y++;
+			if(_plansza[x][y]._type == 0) _elongation_move[GoraLewo]++;
+		}
+
+		for(int i=1;i<8; i++)	if(_elongation_move[i]!=0) _possible_move += (1<<i);
+
+	}
+
 	if(_type == 5)	//konik
 	{
 		_possible_move = 256;
