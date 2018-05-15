@@ -67,6 +67,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 			{
 				y++;
 				if(_plansza[x][y]._type == 0) _elongation_move[Gora]++;
+				else break;
 			}
 		}
 
@@ -77,6 +78,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 			{
 				x++;	y++;
 				if(_plansza[x][y]._type == 0) _elongation_move[GoraPrawo]++;
+				else break;
 			}
 		}
 
@@ -87,6 +89,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 			{
 				x++;
 				if(_plansza[x][y]._type == 0) _elongation_move[Prawo]++;
+				else break;
 			}
 		}
 
@@ -97,6 +100,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 			{
 				x++; y--;
 				if(_plansza[x][y]._type == 0) _elongation_move[DolPrawo]++;
+				else break;
 			}
 		}
 
@@ -107,6 +111,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 			{
 				y--;
 				if(_plansza[x][y]._type == 0) _elongation_move[Dol]++;
+				else break;
 			}
 		}
 
@@ -117,6 +122,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 			{
 				x--; y--;
 				if(_plansza[x][y]._type == 0) _elongation_move[DolLewo]++;
+				else break;
 			}
 		}
 
@@ -127,6 +133,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 			{
 				x--;
 				if(_plansza[x][y]._type == 0) _elongation_move[Lewo]++;
+				else break;
 			}
 		}
 
@@ -137,6 +144,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 			{
 				x--; y++;
 				if(_plansza[x][y]._type == 0) _elongation_move[GoraLewo]++;
+				else break;
 			}
 		}
 
