@@ -84,4 +84,11 @@ enum kierunek_ruchu
 	GoraLewo,
 };
 
+enum team
+{
+	Biale=0,
+	Czarne,
+	Czerwone,
+};
+
 #endif /* FIGURY_H_ */

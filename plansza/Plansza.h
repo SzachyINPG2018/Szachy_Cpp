@@ -9,7 +9,7 @@
 #ifndef PLANSZA_PLANSZA_H_
 #define PLANSZA_PLANSZA_H_
 
-#include "../Figury//Figury.h"
+#include "../Figury/Figury.h"
 #include <vector>
 
 using std::vector;

@@ -2,6 +2,7 @@
 #include <vector>
 #include "Figury/Figury.h"
 #include "plansza/Plansza.h"
+#include "plansza/8x8/Plansza8x8.h"
 
 //makrodef testowe
 #define XX 4
@@ -15,9 +16,11 @@ using std::endl;
 int main()
 {
 	Plansza plansza1(8, 8);
+	Plansza8x8 init(plansza1);		//te dwie linie to utworzenie planszy 8x8 i ustawienie figur
+
+
 	int i, n;
-	plansza1.set_object(XX,YY,TEAM,Pionek);
-	plansza1.set_object(XX+1,YY-1,TEAM,Pionek);
+	plansza1.set_object(XX,YY-1,TEAM,0);
 	i = plansza1.get_object(XX,YY).get_possible_move();
 	cout << endl << "Ruch: "<< i << endl;
 
@@ -62,6 +65,9 @@ int main()
 		n = plansza1.get_object(XX,YY).get_elongation_move(4);
 		cout<< n << "\n";
 	}
+
+
+
 	return 0;
 }
 //ok
