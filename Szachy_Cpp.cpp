@@ -4,8 +4,8 @@
 #include "plansza8x8/Plansza.h"
 
 //makrodef testowe
-#define XX 4
-#define YY 8
+#define XX 1
+#define YY 1
 #define TEAM 0
 
 
@@ -16,8 +16,8 @@ int main()
 {
 	Plansza plansza1(8, 8);
 	int i, n;
-	plansza1.set_object(XX,YY,TEAM,Pionek);
-	plansza1.set_object(XX+1,YY-1,TEAM,Pionek);
+	plansza1.set_object(XX,YY,TEAM,Wieza);
+	//plansza1.set_object(XX+1,YY-1,TEAM,Pionek);
 	i = plansza1.get_object(XX,YY).get_possible_move();
 	cout << endl << "Ruch: "<< i << endl;
 

@@ -29,7 +29,10 @@ Figury::Figury(int x, int y, int team, int type)
 void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y)
 {
 	if(_x==0 || _y==0) return;
+
 	_possible_move = 0;
+
+	std::fill(_elongationbegin(), _elongationend(), 0);
 
 	if(_type == 6)		//sprawdza czy nie zachodzi promocja
 	{
@@ -39,8 +42,6 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 
 	if(_type == 1)	//krol
 	{
-		_possible_move = 0;
-
 								if(_y < dimension_y)	if(_plansza[_x+0][_y+1]._type == 0) _possible_move += 1;
 		if(_x < dimension_x)	if(_y < dimension_y)	if(_plansza[_x+1][_y+1]._type == 0) _possible_move += 2;
 		if(_x < dimension_x)							if(_plansza[_x+1][_y+0]._type == 0) _possible_move += 4;
@@ -53,166 +54,96 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 		for(int i=0;i<8;i++) _elongation_move[i] = ((_possible_move & (1<<i))>>i);
 	}
 
-	if(_type == 2)	//hetman
+	if(_type >= 2 && _type <= 4)	//hetman 2, wieza 3, goniec 4
 	{
-		_possible_move = 0;
-
-		std::fill(_elongationbegin(), _elongationend(), 0);
 
 		int x = _x , y = _y;
 
-		while(y <= dimension_y)
+
+		if(_type == 2 || _type == 3)
 		{
-			y++;
-			if(_plansza[x][y]._type == 0) _elongation_move[Gora]++;
+
+			while(y < dimension_y)
+			{
+				y++;
+				if(_plansza[x][y]._type == 0) _elongation_move[Gora]++;
+			}
 		}
 
-		x =_x; y = _y;
-
-		while(x <= dimension_x && y <= dimension_y)
+		if(_type == 2 || _type == 4)
 		{
-			x++;	y++;
-			if(_plansza[x][y]._type == 0) _elongation_move[GoraPrawo]++;
+			x =_x; y = _y;
+			while(x < dimension_x && y < dimension_y)
+			{
+				x++;	y++;
+				if(_plansza[x][y]._type == 0) _elongation_move[GoraPrawo]++;
+			}
 		}
 
-		x =_x; y = _y;
-
-		while(x <= dimension_x)
+		if(_type == 2 || _type == 3)
 		{
-			x++;
-			if(_plansza[x][y]._type == 0) _elongation_move[Prawo]++;
+		x =_x; y = _y;
+			while(x < dimension_x)
+			{
+				x++;
+				if(_plansza[x][y]._type == 0) _elongation_move[Prawo]++;
+			}
 		}
 
-		x =_x; y = _y;
-
-
-		while(x <= dimension_x && y>0)
+		if(_type == 2 || _type == 4)
 		{
-			x++; y--;
-			if(_plansza[x][y]._type == 0) _elongation_move[DolPrawo]++;
+			x =_x; y = _y;
+			while(x < dimension_x && y>1)
+			{
+				x++; y--;
+				if(_plansza[x][y]._type == 0) _elongation_move[DolPrawo]++;
+			}
 		}
 
-		x =_x; y = _y;
-
-		while( y>0)
+		if(_type == 2 || _type == 3)
 		{
-			y--;
-			if(_plansza[x][y]._type == 0) _elongation_move[Dol]++;
+			x =_x; y = _y;
+			while( y>1)
+			{
+				y--;
+				if(_plansza[x][y]._type == 0) _elongation_move[Dol]++;
+			}
 		}
 
-		x =_x; y = _y;
-
-		while( x>0 && y>0)
+		if(_type == 2 || _type == 4)
 		{
-			x--; y--;
-			if(_plansza[x][y]._type == 0) _elongation_move[DolLewo]++;
+			x =_x; y = _y;
+			while( x>1 && y>1)
+			{
+				x--; y--;
+				if(_plansza[x][y]._type == 0) _elongation_move[DolLewo]++;
+			}
 		}
 
-		x =_x; y = _y;
-
-		while( x>0)
+		if(_type == 2 || _type == 3)
 		{
-			x--;
-			if(_plansza[x][y]._type == 0) _elongation_move[Lewo]++;
+			x =_x; y = _y;
+			while( x>1)
+			{
+				x--;
+				if(_plansza[x][y]._type == 0) _elongation_move[Lewo]++;
+			}
 		}
 
-		x =_x; y = _y;
-
-
-		while( x>0 && y <= dimension_y)
+		if(_type == 2 || _type == 4)
 		{
-			x--; y++;
-			if(_plansza[x][y]._type == 0) _elongation_move[GoraLewo]++;
+			x =_x; y = _y;
+			while( x>1 && y < dimension_y)
+			{
+				x--; y++;
+				if(_plansza[x][y]._type == 0) _elongation_move[GoraLewo]++;
+			}
 		}
 
 		for(int i=1;i<8; i++)	if(_elongation_move[i]!=0) _possible_move += (1<<i);
 
 	}
 
-	if(_type == 3)	//wieza
-	{
-		_possible_move = 0;
-
-		std::fill(_elongationbegin(), _elongationend(), 0);
-
-		int x = _x , y = _y;
-
-		while(y <= dimension_y)
-		{
-			y++;
-			if(_plansza[x][y]._type == 0) _elongation_move[Gora]++;
-		}
-
-		x =_x; y = _y;
-
-		while(x <= dimension_x)
-		{
-			x++;
-			if(_plansza[x][y]._type == 0) _elongation_move[Prawo]++;
-		}
-
-		x =_x; y = _y;
-
-		while( y>0)
-		{
-			y--;
-			if(_plansza[x][y]._type == 0) _elongation_move[Dol]++;
-		}
-
-		x =_x; y = _y;
-
-		while( x>0)
-		{
-			x--;
-			if(_plansza[x][y]._type == 0) _elongation_move[Lewo]++;
-		}
-
-		for(int i=1;i<8; i++)	if(_elongation_move[i]!=0) _possible_move += (1<<i);
-
-	}
-
-
-	if(_type == 4)	//goniec
-	{
-		_possible_move = 0;
-
-		std::fill(_elongationbegin(), _elongationend(), 0);
-
-		int x = _x , y = _y;
-
-		while(x <= dimension_x && y <= dimension_y)
-		{
-			x++;	y++;
-			if(_plansza[x][y]._type == 0) _elongation_move[GoraPrawo]++;
-		}
-
-		x =_x; y = _y;
-
-		while(x <= dimension_x && y>0)
-		{
-			x++; y--;
-			if(_plansza[x][y]._type == 0) _elongation_move[DolPrawo]++;
-		}
-
-		x =_x; y = _y;
-
-		while( x>0 && y>0)
-		{
-			x--; y--;
-			if(_plansza[x][y]._type == 0) _elongation_move[DolLewo]++;
-		}
-
-		x =_x; y = _y;
-
-		while( x>0 && y <= dimension_y)
-		{
-			x--; y++;
-			if(_plansza[x][y]._type == 0) _elongation_move[GoraLewo]++;
-		}
-
-		for(int i=1;i<8; i++)	if(_elongation_move[i]!=0) _possible_move += (1<<i);
-
-	}
 
 	if(_type == 5)	//konik
 	{
