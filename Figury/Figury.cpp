@@ -11,20 +11,7 @@
 #include <vector>
 
 Figury::Figury(int x, int y, int team, int type)
-	: _x(x), _y(y), _team(team), _type(type), _elongation_move(8, 0)
-{
-	//--podstawowe ruchy
-	switch(type)
-	{
-		case 1:	_probable_move = 0b11111111;	break; //krol
-		case 2:	_probable_move = 0b11111111;	break;
-		case 3:	_probable_move = 0b1010101;		break;
-		case 4:	_probable_move = 0b10101010;	break;
-		case 5:	_probable_move = 0b111111111;	break;	//koñ
-		case 6:	_probable_move = 0b00000001;	break;
-	}
-	_possible_move = 0;
-}
+	: _x(x), _y(y), _team(team), _type(type), _elongation_move(8, 0), _possible_move(0) {}
 
 void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y)
 {

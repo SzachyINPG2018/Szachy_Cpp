@@ -23,7 +23,6 @@ public:
 	int get_type(void)	{return _type;}
 	int get_x(void) {return _x;}
 	int get_y(void) {return _y;}
-	int get_probable_move(void) {return _probable_move;}
 
 	int get_possible_move(void) {return _possible_move;}
 	void calc_possible_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y); //metoda obliczaj mo¿liwy ruch
@@ -48,7 +47,6 @@ private:
 	int _x, _y;	//wspolrzedne
 	int _team;	//biale = 0 czy czarne = 1
 	int _type;
-	int _probable_move;
 	vector<int> _elongation_move;
 	//ruch jest mo¿liwy tylko w 8 kierunkach (skoczek te¿ tylko inaczej)
 	//wiêc zmienna przechowuje o ile dana figura mo¿e siê poruszyc

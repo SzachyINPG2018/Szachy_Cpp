@@ -9,7 +9,6 @@
 #define TEAM 0
 
 
-
 using std::cout;
 using std::endl;
 
