@@ -6,8 +6,8 @@
  */
 
 
-#ifndef PLANSZA8X8_PLANSZA_H_
-#define PLANSZA8X8_PLANSZA_H_
+#ifndef PLANSZA_PLANSZA_H_
+#define PLANSZA_PLANSZA_H_
 
 #include "../Figury//Figury.h"
 #include <vector>
@@ -38,4 +38,4 @@ private:
 	int _dimension_x, _dimension_y;
 };
 
-#endif /* PLANSZA8X8_PLANSZA_H_ */
+#endif /* PLANSZA_PLANSZA_H_ */

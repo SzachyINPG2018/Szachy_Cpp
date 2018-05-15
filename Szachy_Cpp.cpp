@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Figury/Figury.h"
-#include "plansza8x8/Plansza.h"
+#include "plansza/Plansza.h"
 
 //makrodef testowe
 #define XX 4
@@ -16,7 +16,7 @@ int main()
 {
 	Plansza plansza1(8, 8);
 	int i, n;
-	plansza1.set_object(XX,YY,TEAM,Hetman);
+	plansza1.set_object(XX,YY,TEAM,Pionek);
 	plansza1.set_object(XX+1,YY-1,TEAM,Pionek);
 	i = plansza1.get_object(XX,YY).get_possible_move();
 	cout << endl << "Ruch: "<< i << endl;

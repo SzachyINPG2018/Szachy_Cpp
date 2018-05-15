@@ -5,6 +5,6 @@
  *      Author: Mariusz
  */
 
-#include "Plansza.h"
+#include "../plansza/Plansza.h"
 
 
