@@ -28,7 +28,9 @@ public:
 	Figury get_object(int x, int y)				{return _plansza[x][y];}
 	void set_object(int x, int y, int team, int type)
 	{
-		_plansza[x][y] = Figury(x, y, team, type);
+		_plansza[x][y].set_xy(x, y);
+		_plansza[x][y].set_team(team);
+		_plansza[x][y].set_type(type);
 		for(int i=1; i <= _dimension_x; i++)
 			for(int j=1; j <= _dimension_y; j++)
 				_plansza[i][j].calc_possible_move(_plansza, _dimension_x, _dimension_y);

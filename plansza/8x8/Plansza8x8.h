@@ -10,7 +10,6 @@
 
 #include "../Plansza.h"
 #include <vector>
-
 class Plansza8x8
 {
 public:

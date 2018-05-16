@@ -11,7 +11,10 @@
 #include <vector>
 
 Figury::Figury(int x, int y, int team, int type)
-	: _x(x), _y(y), _team(team), _type(type), _elongation_move(8, 0), _possible_move(0) {}
+	: _x(x), _y(y),
+	  _team(team), _type(type),
+	  _elongation_move(12, 0), _possible_move(0),
+	  _flag_move(0)  {}
 
 void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y)
 {
@@ -37,6 +40,36 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 		if(_x > 1)				if(_y > 1)				if(_plansza[_x-1][_y-1]._type == 0) _possible_move += 32;
 		if(_x > 1)										if(_plansza[_x-1][_y+0]._type == 0) _possible_move += 64;
 		if(_x > 1)				if(_y < dimension_y) 	if(_plansza[_x-1][_y+1]._type == 0) _possible_move += 128;
+
+
+		_flag_castling = 0;
+		if(dimension_x == 8) //roszada tylko dla 8x8
+		if(_flag_move == 0)
+		{
+			if(_team == 0)
+			{
+				if(_plansza[1][1]._flag_move == 0)
+					if(_plansza[2][1]._type == 0 &&
+					   _plansza[3][1]._type == 0 &&
+					   _plansza[4][1]._type == 0)		_flag_castling += 2; //roszada d³uga
+
+				if(_plansza[1][1]._flag_move == 0)
+					if(_plansza[6][1]._type == 0 &&
+					   _plansza[7][1]._type == 0)		_flag_castling += 1; //roszada krótka
+			}
+			if(_team == 1)
+			{
+				if(_plansza[1][dimension_y]._flag_move == 0)
+					if(_plansza[2][dimension_y]._type == 0 &&
+					   _plansza[3][dimension_y]._type == 0 &&
+					   _plansza[4][dimension_y]._type == 0)		_flag_castling += 2; //roszada d³uga
+
+				if(_plansza[1][dimension_y]._flag_move == 0)
+					if(_plansza[6][dimension_y]._type == 0 &&
+					   _plansza[7][dimension_y]._type == 0)		_flag_castling += 1; //roszada krótka
+			}
+
+		}
 
 		for(int i=0;i<8;i++) _elongation_move[i] = ((_possible_move & (1<<i))>>i);
 	}

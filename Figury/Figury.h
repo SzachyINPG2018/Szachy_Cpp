@@ -19,6 +19,8 @@ public:
 	Figury(int x=0, int y=0, int team=0, int type=0);
 
 	void set_xy(int x, int y) { _x = x; _y = y;}
+	void set_team(int team)	{_team = team;}
+	void set_type(int type)	{_type = type;}
 	int get_team(void)	{return _team;}
 	int get_type(void)	{return _type;}
 	int get_x(void) {return _x;}
@@ -32,6 +34,8 @@ public:
 	//void calc_elongation_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y);
 
 	void promote_pawn(void);	//metoda promocji pionu
+
+	int get_castling(void)		{return _flag_castling;}
 
 
 	std::vector<int>::iterator _elongationbegin()
@@ -47,6 +51,9 @@ private:
 	int _x, _y;	//wspolrzedne
 	int _team;	//biale = 0 czy czarne = 1
 	int _type;
+	int _flag_move;
+	int _flag_castling; //flaga zezwalaj¹ca na roszade 0 - nie 1- krótka 2- dluga 3- obie
+
 	vector<int> _elongation_move;
 	//ruch jest mo¿liwy tylko w 8 kierunkach (skoczek te¿ tylko inaczej)
 	//wiêc zmienna przechowuje o ile dana figura mo¿e siê poruszyc

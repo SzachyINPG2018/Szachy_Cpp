@@ -5,8 +5,8 @@
 #include "plansza/8x8/Plansza8x8.h"
 
 //makrodef testowe
-#define XX 4
-#define YY 8
+#define XX 5
+#define YY 1
 #define TEAM 0
 
 
@@ -20,7 +20,18 @@ int main()
 
 
 	int i, n;
-	plansza1.set_object(XX,YY-1,TEAM,0);
+	cout << endl << "Roszada 1: "<< plansza1.get_object(XX, YY).get_castling() << endl;
+	plansza1.set_object(2,1,TEAM,0);
+	plansza1.set_object(3,1,TEAM,0);
+	plansza1.set_object(4,1,TEAM,0);
+	cout << endl << "Roszada dluga: "<< plansza1.get_object(XX, YY).get_castling() << endl;
+	plansza1.set_object(7,1,TEAM,0);
+	plansza1.set_object(6,1,TEAM,0);
+	plansza1.set_object(2,1,TEAM,2);
+	cout << endl << "Roszada krotka: "<< plansza1.get_object(XX, YY).get_castling() << endl;
+	plansza1.set_object(2,1,TEAM,0);
+	cout << endl << "Roszady obie: "<< plansza1.get_object(XX, YY).get_castling() << endl;
+
 	i = plansza1.get_object(XX,YY).get_possible_move();
 	cout << endl << "Ruch: "<< i << endl;
 
