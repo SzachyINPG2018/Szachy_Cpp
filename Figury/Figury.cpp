@@ -13,7 +13,7 @@
 Figury::Figury(int x, int y, int team, int type)
 	: _x(x), _y(y),
 	  _team(team), _type(type),
-	  _elongation_move(12, 0), _possible_move(0),
+	  _elongation_move(12 , 0), _possible_move(0),
 	  _flag_move(0)  {}
 
 void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y)

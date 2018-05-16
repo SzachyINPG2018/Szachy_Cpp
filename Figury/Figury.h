@@ -67,6 +67,8 @@ private:
 * 4 Goniec
 * 5 Skoczek
 * 6 Pionek
+* 7 Arcybiskup
+* 8 Kanclerz
 */
 
 enum figury
@@ -77,6 +79,8 @@ enum figury
 	Goniec,
 	Skoczek,
 	Pionek,
+	Arcybiskup,
+	Kanclerz
 };
 
 enum kierunek_ruchu
