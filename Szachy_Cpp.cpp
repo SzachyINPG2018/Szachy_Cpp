@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+
+#include <windows.h>
+
 #include "Figury/Figury.h"
 #include "plansza/Plansza.h"
 #include "plansza/8x8/Plansza8x8.h"
@@ -11,6 +14,7 @@
 
 
 using std::cout;
+using std::cin;
 using std::endl;
 
 int main()
@@ -18,7 +22,19 @@ int main()
 	Plansza plansza1(8, 8);
 	Plansza8x8 init(plansza1);		//te dwie linie to utworzenie planszy 8x8 i ustawienie figur
 	int i, n;
+	int choice=0;
 
+	cout <<	"----------------------" << endl;
+	cout << "------- SZACHY -------" << endl;
+	cout <<	"----------------------" << endl;
+	cout <<	"Wybor opcji: ---------" << endl;
+	cout <<	"1. Szachy stdandard --" << endl;
+	cout <<	"2. Szachy Capablanki -" << endl;
+	cout <<	"----------------------" << endl;
+	cout <<	"9. Wersja gry --------\n" << endl;
+
+
+	/* TYLKO TESTY TYLKO TESTY
 	cout << endl << "Roszada 1: "<< plansza1.get_object(XX, YY).get_castling() << endl;
 	plansza1.set_object(2,1,TEAM,0);
 	plansza1.set_object(3,1,TEAM,0);
@@ -137,7 +153,7 @@ int main()
 	}
 
 
-
+*/
 	return 0;
 }
 //ok
