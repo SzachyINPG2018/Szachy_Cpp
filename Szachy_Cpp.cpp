@@ -17,9 +17,8 @@ int main()
 {
 	Plansza plansza1(8, 8);
 	Plansza8x8 init(plansza1);		//te dwie linie to utworzenie planszy 8x8 i ustawienie figur
-
-
 	int i, n;
+
 	cout << endl << "Roszada 1: "<< plansza1.get_object(XX, YY).get_castling() << endl;
 	plansza1.set_object(2,1,TEAM,0);
 	plansza1.set_object(3,1,TEAM,0);
@@ -32,10 +31,13 @@ int main()
 	plansza1.set_object(2,1,TEAM,0);
 	cout << endl << "Roszady obie: "<< plansza1.get_object(XX, YY).get_castling() << endl;
 
+
 	i = plansza1.get_object(XX,YY).get_possible_move();
 	cout << endl << "Ruch: "<< i << endl;
 
-	if(plansza1.get_object(XX,YY).get_type()!=Skoczek)
+	if(plansza1.get_object(XX,YY).get_type()!=Skoczek &&
+			plansza1.get_object(XX,YY).get_type()!=Arcybiskup &&
+			plansza1.get_object(XX,YY).get_type()!=Kanclerz)
 	{
 		n = plansza1.get_object(XX,YY).get_elongation_move(7);
 		cout<< n << " ";
@@ -57,6 +59,63 @@ int main()
 		n = plansza1.get_object(XX,YY).get_elongation_move(3);
 		cout<< n << "\n";
 	}
+	else	if(plansza1.get_object(XX,YY).get_type()==Arcybiskup)
+			{
+				n = plansza1.get_object(XX,YY).get_elongation_move(0);
+				cout<< "  " << n << " ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(1);
+				cout<< n << "\n ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(7);
+				cout<< n ;
+				n = plansza1.get_object(XX,YY).get_elongation_move(11);
+				cout<< n << " ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(8);
+				cout<< n << "";
+				n = plansza1.get_object(XX,YY).get_elongation_move(2);
+				cout<< n << "\n   x\n ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(6);
+				cout<< n;
+				n = plansza1.get_object(XX,YY).get_elongation_move(10);
+				cout<< n << " ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(9);
+				cout<< n << "";
+				n = plansza1.get_object(XX,YY).get_elongation_move(3);
+				cout<< n << "\n ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(5);
+				cout<< " " << n << " ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(4);
+				cout<< n << "\n";
+			}
+	else 	if(plansza1.get_object(XX,YY).get_type()==Kanclerz)
+			{
+				n = plansza1.get_object(XX,YY).get_elongation_move(0);
+				cout<< "  " << n << " ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(1);
+				cout<< n << "\n ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(7);
+				cout<< n << " ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(8);
+				cout<< n << " ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(2);
+				cout<< n << "\n  ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(11);
+				cout<< n << "x";
+				n = plansza1.get_object(XX,YY).get_elongation_move(9);
+				cout<< n << "\n ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(6);
+				cout<< n << " ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(10);
+				cout<< n << " ";
+
+
+				n = plansza1.get_object(XX,YY).get_elongation_move(3);
+				cout<< n << "\n ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(5);
+				cout<< " " << n << " ";
+				n = plansza1.get_object(XX,YY).get_elongation_move(4);
+				cout<< n << "\n";
+			}
+
 	else
 	{
 		n = plansza1.get_object(XX,YY).get_elongation_move(0);
@@ -66,7 +125,7 @@ int main()
 		n = plansza1.get_object(XX,YY).get_elongation_move(7);
 		cout<< n << "   ";
 		n = plansza1.get_object(XX,YY).get_elongation_move(2);
-		cout<< n << "\n";
+		cout<< n << "\n  x\n";
 		n = plansza1.get_object(XX,YY).get_elongation_move(6);
 		cout<< n << "   ";
 		n = plansza1.get_object(XX,YY).get_elongation_move(3);

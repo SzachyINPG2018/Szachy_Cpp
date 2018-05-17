@@ -168,7 +168,7 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 			}
 		}
 
-		for(int i=1;i<8; i++)	if(_elongation_move[i]!=0) _possible_move += (1<<i);
+		for(int i=0;i<8; i++)	if(_elongation_move[i]!=0) _possible_move += (1<<i);
 
 	}
 
@@ -211,9 +211,10 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 	}
 
 
-	if(_type == Arcybiskup)
+	if(_type == Arcybiskup || _type == Kanclerz)
 	{
-		_possible_move = (1<<8);
+		_possible_move = (1<<8);	//ruch jak kon
+		_possible_move = (1<<13);	//ruch dodatkowy jak goniec (A) lub wieza (K)
 
 		if(_x> 1)				if(_y< (dimension_y-1))	if(_plansza[_x-1][_y+2]._type == 0) _possible_move += 1;
 		if(_x< dimension_x)		if(_y< (dimension_y-1))	if(_plansza[_x+1][_y+2]._type == 0) _possible_move += 2;
@@ -225,8 +226,98 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 		if(_x> 2)				if(_y< dimension_y)		if(_plansza[_x-2][_y+1]._type == 0) _possible_move += 128;
 
 		for(int i=0;i<8;i++) _elongation_move[i] = ((_possible_move & (1<<i))>>i);
-	}
 
+		int x = _x , y = _y;
+		if(_type == Kanclerz)
+		{
+			while(y < dimension_y)
+			{
+				y++;
+				if(_plansza[x][y]._type == 0) _elongation_move[GoraGoraPrawo]++;
+				else break;
+			}
+		}
+
+		x =_x; y = _y;
+		if(_type == Arcybiskup)
+		{
+			while(x < dimension_x && y < dimension_y)
+			{
+				x++;	y++;
+				if(_plansza[x][y]._type == 0) _elongation_move[GoraGoraPrawo]++;
+				else break;
+			}
+		}
+
+		x =_x; y = _y;
+		if(_type == Kanclerz)
+		{
+			while(x < dimension_x)
+			{
+				x++;
+				if(_plansza[x][y]._type == 0) _elongation_move[PrawoDolPrawo]++;
+				else break;
+			}
+		}
+
+		x =_x; y = _y;
+		if(_type == Arcybiskup)
+		{
+			while(x < dimension_x && y>1)
+			{
+				x++; y--;
+				if(_plansza[x][y]._type == 0) _elongation_move[PrawoDolPrawo]++;
+				else break;
+			}
+		}
+
+		x =_x; y = _y;
+		if(_type == Kanclerz)
+		{
+
+			while( y>1)
+			{
+				y--;
+				if(_plansza[x][y]._type == 0) _elongation_move[DolDolLewo]++;
+				else break;
+			}
+		}
+
+		if(_type == Arcybiskup)
+		{
+			x =_x; y = _y;
+			while( x>1 && y>1)
+			{
+				x--; y--;
+				if(_plansza[x][y]._type == 0) _elongation_move[DolDolLewo]++;
+				else break;
+			}
+		}
+
+		x =_x; y = _y;
+		if(_type == Kanclerz)
+		{
+			while( x>1)
+			{
+				x--;
+				if(_plansza[x][y]._type == 0) _elongation_move[LewoGoraLewo]++;
+				else break;
+			}
+		}
+
+		x =_x; y = _y;
+		if(_type == Arcybiskup)
+		{
+			while( x>1 && y < dimension_y)
+			{
+				x--; y++;
+				if(_plansza[x][y]._type == 0) _elongation_move[LewoGoraLewo]++;
+				else break;
+			}
+		}
+
+		for(int i=0;i<4; i++)	if(_elongation_move[i+8]!=0) _possible_move += (1<<i);
+	}
 
 	return;
 }

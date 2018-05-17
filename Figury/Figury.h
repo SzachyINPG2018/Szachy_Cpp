@@ -55,8 +55,9 @@ private:
 	int _flag_castling; //flaga zezwalaj¹ca na roszade 0 - nie 1- krótka 2- dluga 3- obie
 
 	vector<int> _elongation_move;
-	//ruch jest mo¿liwy tylko w 8 kierunkach (skoczek te¿ tylko inaczej)
+	//ruch jest mo¿liwy tylko w 12 kierunkach (skoczek te¿ tylko inaczej)
 	//wiêc zmienna przechowuje o ile dana figura mo¿e siê poruszyc
+	//arcybiskup i kanclerz s¹ upoœledzone
 
 };
 
@@ -93,6 +94,10 @@ enum kierunek_ruchu
 	DolLewo,
 	Lewo,
 	GoraLewo,
+	GoraGoraPrawo=8,
+	PrawoDolPrawo,
+	DolDolLewo,
+	LewoGoraLewo
 };
 
 enum team
