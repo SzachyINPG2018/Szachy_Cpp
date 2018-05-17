@@ -14,7 +14,7 @@ Figury::Figury(int x, int y, int team, int type)
 	: _x(x), _y(y),
 	  _team(team), _type(type),
 	  _elongation_move(12 , 0), _possible_move(0),
-	  _flag_move(0)  {}
+	  _flag_move(0), _flag_castling(0)  {}
 
 void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y)
 {
@@ -208,8 +208,26 @@ void Figury::calc_possible_move(vector<vector<Figury> > _plansza, int dimension_
 			if(_y != dimension_y-1)	if(_plansza[_x][_y-1]._type == 0) _elongation_move[Dol] = 1;
 			if(_elongation_move[Dol] == 0) _possible_move = 0; //jednak nie ma ruchu
 		}
-
 	}
+
+
+	if(_type == Arcybiskup)
+	{
+		_possible_move = (1<<8);
+
+		if(_x> 1)				if(_y< (dimension_y-1))	if(_plansza[_x-1][_y+2]._type == 0) _possible_move += 1;
+		if(_x< dimension_x)		if(_y< (dimension_y-1))	if(_plansza[_x+1][_y+2]._type == 0) _possible_move += 2;
+		if(_x< (dimension_x-1))	if(_y< dimension_y)		if(_plansza[_x+2][_y+1]._type == 0) _possible_move += 4;
+		if(_x< (dimension_x-1))	if(_y> 1)				if(_plansza[_x+2][_y-1]._type == 0) _possible_move += 8;
+		if(_x< dimension_x)		if(_y> 2)				if(_plansza[_x+1][_y-2]._type == 0) _possible_move += 16;
+		if(_x> 1)				if(_y> 2)				if(_plansza[_x-1][_y-2]._type == 0) _possible_move += 32;
+		if(_x> 2)				if(_y> 1)				if(_plansza[_x-2][_y-1]._type == 0) _possible_move += 64;
+		if(_x> 2)				if(_y< dimension_y)		if(_plansza[_x-2][_y+1]._type == 0) _possible_move += 128;
+
+		for(int i=0;i<8;i++) _elongation_move[i] = ((_possible_move & (1<<i))>>i);
+	}
+
+
 	return;
 }
 
