@@ -9,8 +9,55 @@
 #define FIGURY_H_
 
 #include <vector>
+#include <math.h>
 
 using std::vector;
+
+/*
+* 1 Krol
+* 2 Hetman
+* 3 Wieza
+* 4 Goniec
+* 5 Skoczek
+* 6 Pionek
+* 7 Arcybiskup
+* 8 Kanclerz
+*/
+
+enum figury
+{
+	Krol=1,
+	Hetman,
+	Wieza,
+	Goniec,
+	Skoczek,
+	Pionek,
+	Arcybiskup,
+	Kanclerz
+};
+
+enum kierunek_ruchu
+{
+	Gora=0,
+	GoraPrawo,
+	Prawo,
+	DolPrawo,
+	Dol,
+	DolLewo,
+	Lewo,
+	GoraLewo,
+	GoraGoraPrawo=8,
+	PrawoDolPrawo,
+	DolDolLewo,
+	LewoGoraLewo
+};
+
+enum team
+{
+	Biale=0,
+	Czarne,
+	Czerwone,
+};
 
 class Figury
 {
@@ -60,51 +107,4 @@ private:
 	//arcybiskup i kanclerz s¹ upoœledzone
 
 };
-
-/*
-* 1 Krol
-* 2 Hetman
-* 3 Wieza
-* 4 Goniec
-* 5 Skoczek
-* 6 Pionek
-* 7 Arcybiskup
-* 8 Kanclerz
-*/
-
-enum figury
-{
-	Krol=1,
-	Hetman,
-	Wieza,
-	Goniec,
-	Skoczek,
-	Pionek,
-	Arcybiskup,
-	Kanclerz
-};
-
-enum kierunek_ruchu
-{
-	Gora=0,
-	GoraPrawo,
-	Prawo,
-	DolPrawo,
-	Dol,
-	DolLewo,
-	Lewo,
-	GoraLewo,
-	GoraGoraPrawo=8,
-	PrawoDolPrawo,
-	DolDolLewo,
-	LewoGoraLewo
-};
-
-enum team
-{
-	Biale=0,
-	Czarne,
-	Czerwone,
-};
-
 #endif /* FIGURY_H_ */

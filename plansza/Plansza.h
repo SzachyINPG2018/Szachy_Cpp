@@ -11,7 +11,7 @@
 
 #include "../Figury/Figury.h"
 #include <vector>
-
+#include <iostream>
 using std::vector;
 
 class Plansza
@@ -35,6 +35,34 @@ public:
 			for(int j=1; j <= _dimension_y; j++)
 				_plansza[i][j].calc_possible_move(_plansza, _dimension_x, _dimension_y);
 	}
+
+	void make_motion(int x, int y, int xtarget, int ytarget)
+	{
+		if(_plansza[x][y].get_type() != Skoczek)
+		if(xtarget == x && ytarget != y)
+		{
+
+			if(ytarget > y)
+			{
+				if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(Gora))
+				{
+					_plansza[x][ytarget].set_team(_plansza[x][y].get_team());
+					_plansza[x][ytarget].set_type(_plansza[x][y].get_type());
+					_plansza[x][ytarget].set_xy(xtarget,ytarget);
+					set_object(x,y,0,0);
+				}
+			}
+			else if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(Dol))
+			{
+				_plansza[x][ytarget].set_team(_plansza[x][y].get_team());
+				_plansza[x][ytarget].set_type(_plansza[x][y].get_type());
+				_plansza[x][ytarget].set_xy(xtarget,ytarget);
+				set_object(x,y,0,0);
+			}
+
+		}
+	}
+
 private:
 	vector<vector<Figury> > _plansza;
 	int _dimension_x, _dimension_y;
