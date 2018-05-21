@@ -11,6 +11,7 @@
 
 #include "../Figury/Figury.h"
 #include <vector>
+#include <math.h>
 
 using std::vector;
 
@@ -34,6 +35,22 @@ public:
 		for(int i=1; i <= _dimension_x; i++)
 			for(int j=1; j <= _dimension_y; j++)
 				_plansza[i][j].calc_possible_move(_plansza, _dimension_x, _dimension_y);
+	}
+
+	void make_move(int x, int y, int xtarget, int ytarget)
+	{
+		if(x == xtarget)
+			if(y < ytarget)
+				if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(Gora))
+				{
+					_plansza[xtarget][ytarget].set_team(_plansza[x][y].get_team());
+					_plansza[xtarget][ytarget].set_type(_plansza[x][y].get_type());
+					_plansza[xtarget][ytarget].set_xy(x, y);
+					_plansza[x][y].set_type(0);
+				}
+			if(y < ytarget)
+				if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(Dol));
+		//_plansza[x][y].
 	}
 private:
 	vector<vector<Figury> > _plansza;
