@@ -50,9 +50,10 @@ int main()
 		cout << "Biale rozpoczynaja rozgrywke\n\n";
 		while(1)
 		{
+			cout << "\n";
 			move = "";
 			//metoda której jeszcze nie ma rysuje plansze //plansza1.draw();
-Ruch: 		cout << team_m[who_s]<<" podaj ruch: ";
+Ruch: 		cout << "\n" << team_m[who_s]<<" podaj ruch: ";
 			cin >> move; //ruch np A1WA3
 			if(move[5] != '\0' || move[0] == '\0' || move[1] == '\0' ||
 				move[2] == '\0' || move[3] == '\0' || move[4] == '\0' )
@@ -86,9 +87,16 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 
 			cout << "X: "  << x  << " Y: "  << y  << " Type: " << type;
 			cout << " Xt: " << xt << " Yt: " << yt << endl;
+
+			if(plansza1.get_object(x,y).get_team() != who_s) goto Ruch1;
 			if(!plansza1.make_move(x, y, xt, yt)) goto Ruch1;
 
-			break;
+			if(who_s == 0)
+				{
+					who_s = 1;
+					continue;
+				}
+			if(who_s == 1) who_s = 0;
 		}
 	}
 
