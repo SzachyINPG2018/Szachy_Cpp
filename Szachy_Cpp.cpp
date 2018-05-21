@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include <windows.h>
 
@@ -16,26 +17,89 @@
 using std::cout;
 using std::cin;
 using std::endl;
+using std::string;
+using std::vector;
+
 
 int main()
 {
 	Plansza plansza1(8, 8);
 	Plansza8x8 init(plansza1);		//te dwie linie to utworzenie planszy 8x8 i ustawienie figur
-	int i, n;
+	//int i, n;
 	int choice=0;
+	string move;
+	int who_s=0;
+	int x=0, y=0, type=0, xt=0, yt=0;
+	vector<string> team_m = {"Biale", "Czarne"};
 
-	cout <<	"----------------------" << endl;
-	cout << "------- SZACHY -------" << endl;
-	cout <<	"----------------------" << endl;
-	cout <<	"Wybor opcji: ---------" << endl;
+	cout <<	"------------------------" << endl;
+	cout << "-------- SZACHY --------" << endl;
+	cout <<	"------------------------" << endl;
+	cout <<	"Wybor opcji: -----------" << endl;
 	cout <<	"1. Szachy standardowe --" << endl;
-	cout <<	"2. Szachy 80 pol -----" << endl;
-	cout <<	"3. Szachy 100 pol ----" << endl;
-	cout <<	"----------------------" << endl;
-	cout <<	"9. Wersja gry --------\n" << endl;
+	cout <<	"2. Szachy 80 pol -------" << endl;
+	cout <<	"3. Szachy 100 pol ------" << endl;
+	cout <<	"------------------------" << endl;
+	cout <<	"9. Wersja gry ----------\n" << endl;
+
+	cin >> choice;
+
+	if(choice == 1)
+	{
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		cout << "Biale rozpoczynaja rozgrywke\n\n";
+		while(1)
+		{
+			move = "";
+			//metoda której jeszcze nie ma rysuje plansze //plansza1.draw();
+Ruch: 		cout << team_m[who_s]<<" podaj ruch: ";
+			cin >> move; //ruch np A1WA3
+			if(move[5] != '\0' || move[0] == '\0' || move[1] == '\0' ||
+				move[2] == '\0' || move[3] == '\0' || move[4] == '\0' )
+			{
+Ruch1:			cout << "Zle wprowadzony ruch\n";
+				goto Ruch;
+			}
+			if(move[0]<'A') x = (move[0]-'0');
+			else if(move[0]<'a') x = (move[0]-'A'+1);
+			else 			x = (move[0]-'a'+1);
+
+			y = ( move[1] - '0' );
+
+			type = 0;
+			if(move[2] == 'K')	type = Krol;
+			if(move[2] == 'H')	type = Hetman;
+			if(move[2] == 'W')	type = Wieza;
+			if(move[2] == 'G')	type = Goniec;
+			if(move[2] == 'S')	type = Skoczek;
+			if(move[2] == 'P')	type = Pionek;
+			if(move[2] == 'A')	type = Arcybiskup;
+			if(move[2] == 'N')	type = Kanclerz;
+
+			if(plansza1.get_object(x,y).get_type() != type)	goto Ruch1;
+
+			if(move[3]<'A') xt = (move[3]-'0');
+			else if(move[3]<'a') xt = (move[3]-'A'+1);
+			else 			xt = (move[3]-'a'+1);
+
+			yt = ( move[4] - '0' );
+
+			cout << "X: "  << x  << " Y: "  << y  << " Type: " << type;
+			cout << " Xt: " << xt << " Yt: " << yt << endl;
+			if(!plansza1.make_move(x, y, xt, yt)) goto Ruch1;
+
+			break;
+		}
+	}
 
 
-	/* TYLKO TESTY TYLKO TESTY
+
+	system("PAUSE");
+	return 0;
+}
+//ok
+
+/* TYLKO TESTY TYLKO TESTY
 	cout << endl << "Roszada 1: "<< plansza1.get_object(XX, YY).get_castling() << endl;
 	plansza1.set_object(2,1,TEAM,0);
 	plansza1.set_object(3,1,TEAM,0);
@@ -155,9 +219,3 @@ int main()
 
 
 */
-
-	system("PAUSE");
-	return 0;
-}
-//ok
-

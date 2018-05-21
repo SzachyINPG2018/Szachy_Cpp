@@ -37,29 +37,65 @@ public:
 				_plansza[i][j].calc_possible_move(_plansza, _dimension_x, _dimension_y);
 	}
 
-	void make_move(int x, int y, int xtarget, int ytarget)
+	int make_move(int x, int y, int xtarget, int ytarget)
 	{
-		if(_plansza[x][y].get_type() != Skoczek)
-		if(x == xtarget)
-		{
-			if(y < ytarget)
-				if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(Gora))
-				{
-					_plansza[xtarget][ytarget].set_team(_plansza[x][y].get_team());
-					_plansza[xtarget][ytarget].set_type(_plansza[x][y].get_type());
-					_plansza[xtarget][ytarget].set_xy(x, y);
-					_plansza[x][y].set_type(0);
-				}
-			if(y > ytarget)
-				if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(Dol));
-				{
-					_plansza[xtarget][ytarget].set_team(_plansza[x][y].get_team());
-					_plansza[xtarget][ytarget].set_type(_plansza[x][y].get_type());
-					_plansza[xtarget][ytarget].set_xy(x, y);
-					_plansza[x][y].set_type(0);
-				}
-		}
+		int direction=0;
+		if(x == xtarget && y == ytarget) return 0;
 
+
+		if(_plansza[x][y].get_type() != Skoczek &&
+			_plansza[x][y].get_type() != Arcybiskup &&
+			_plansza[x][y].get_type() != Kanclerz)
+		{
+			if(x == xtarget)
+			{
+				if(y < ytarget) direction = Gora;
+				if(y > ytarget)	direction = Dol;
+
+				if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(direction))
+				{
+					set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+				}
+			}
+
+			if(abs(xtarget - x) == abs(ytarget - y))
+			{
+				if(x < xtarget && y < ytarget) direction = GoraPrawo;
+				if(x < xtarget && y > ytarget) direction = DolPrawo;
+				if(x > xtarget && y > ytarget) direction = DolLewo;
+				if(x > xtarget && y < ytarget) direction = GoraLewo;
+
+				if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(direction))
+				{
+					set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+				}
+			}
+
+			if(y == ytarget)
+			{
+				if(x < xtarget) direction = Prawo;
+				if(x > xtarget)	direction = Lewo;
+
+				if(abs(xtarget - x) <= _plansza[x][y].get_elongation_move(direction))
+				{
+					set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+				}
+			}
+
+		}
+		return 0;
 	}
 private:
 	vector<vector<Figury> > _plansza;
