@@ -8,30 +8,23 @@
 #include "plansza/Plansza.h"
 #include "plansza/8x8/Plansza8x8.h"
 
-//makrodef testowe
-#define XX 5
-#define YY 1
-#define TEAM 0
-
-
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
 using std::vector;
 
-
 int main()
 {
 	Plansza plansza1(8, 8);
 	Plansza8x8 init(plansza1);		//te dwie linie to utworzenie planszy 8x8 i ustawienie figur
 	//int i, n;
-	int choice=0;
+	int choice=1;
 	string move;
 	int who_s=0;
 	int x=0, y=0, type=0, xt=0, yt=0;
 	vector<string> team_m = {"Biale", "Czarne"};
-
+/*
 	cout <<	"------------------------" << endl;
 	cout << "-------- SZACHY --------" << endl;
 	cout <<	"------------------------" << endl;
@@ -43,18 +36,20 @@ int main()
 	cout <<	"9. Wersja gry ----------\n" << endl;
 
 	cin >> choice;
-
+*/
 	if(choice == 1)
 	{
-		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	//	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 		cout << "Biale rozpoczynaja rozgrywke\n\n";
 		while(1)
 		{
 			cout << "\n";
 			move = "";
-			//metoda której jeszcze nie ma rysuje plansze //plansza1.draw();
+			plansza1.draw(); //metoda która rysuje plansze
 Ruch: 		cout << "\n" << team_m[who_s]<<" podaj ruch: ";
 			cin >> move; //ruch np A1WA3
+
+			if(move == "exit") return 0; //wyjscie z gry
 			if(move[5] != '\0' || move[0] == '\0' || move[1] == '\0' ||
 				move[2] == '\0' || move[3] == '\0' || move[4] == '\0' )
 			{
@@ -85,8 +80,9 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 
 			yt = ( move[4] - '0' );
 
-			cout << "X: "  << x  << " Y: "  << y  << " Type: " << type;
-			cout << " Xt: " << xt << " Yt: " << yt << endl;
+		//	cout << "X: "  << x  << " Y: "  << y  << " Type: " << type;
+		//	cout << " Xt: " << xt << " Yt: " << yt << endl;
+		//tylko debugowanie
 
 			if(plansza1.get_object(x,y).get_team() != who_s) goto Ruch1;
 			if(!plansza1.make_move(x, y, xt, yt)) goto Ruch1;

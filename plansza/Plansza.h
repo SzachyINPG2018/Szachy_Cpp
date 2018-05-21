@@ -12,8 +12,24 @@
 #include "../Figury/Figury.h"
 #include <vector>
 #include <math.h>
+#include <iostream>
 
 using std::vector;
+using std::cout;
+
+enum figuryznaki
+{
+	Krolznak='K',
+	Hetmanznak='H',
+	Wiezaznak='W',
+	Goniecznak='G',
+	Skoczekznak='S',
+	Pionekznak='P',
+	Arcybiskupznak='A',
+	Kanclerzznak='N'
+};
+
+
 
 class Plansza
 {
@@ -37,6 +53,8 @@ public:
 				_plansza[i][j].calc_possible_move(_plansza, _dimension_x, _dimension_y);
 	}
 
+
+	//bez konia kanclerza i arcybiskupa
 	int make_move(int x, int y, int xtarget, int ytarget)
 	{
 		int direction=0;
@@ -97,6 +115,49 @@ public:
 		}
 		return 0;
 	}
+
+
+
+	void draw(void)
+	{
+		char znak;
+		for(int x=0; x < _dimension_x; x++) cout << "-" << char(x+'a');
+		cout << "---\n";
+		for(int y=_dimension_y-1; y >=0; y--)
+		{
+			for(int x=0; x < _dimension_x; x++)
+			{
+				cout << "-";
+				znak = _plansza[x+1][y+1].get_type();
+				switch( znak )
+				{
+				case 0:
+					znak = ' '; 		break;
+				case Krol:
+					znak = Krolznak;	break;
+				case Hetman:
+					znak = Hetmanznak;	break;
+				case Wieza:
+					znak = Wiezaznak;	break;
+				case Goniec:
+					znak = Goniecznak;	break;
+				case Skoczek:
+					znak = Skoczekznak;	break;
+				case Pionek:
+					znak = Pionekznak;	break;
+				case Arcybiskup:
+					znak = Arcybiskupznak;	break;
+				case Kanclerz:
+					znak = Kanclerzznak;	break;
+				}
+				cout << znak;
+			}
+			cout << "--" << y+1 << "\n";
+		}
+	}
+
+
+
 private:
 	vector<vector<Figury> > _plansza;
 	int _dimension_x, _dimension_y;
