@@ -65,14 +65,14 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 			y = ( move[1] - '0' );
 
 			type = 0;
-			if(move[2] == 'K')	type = Krol;
-			if(move[2] == 'H')	type = Hetman;
-			if(move[2] == 'W')	type = Wieza;
-			if(move[2] == 'G')	type = Goniec;
-			if(move[2] == 'S')	type = Skoczek;
-			if(move[2] == 'P')	type = Pionek;
-			if(move[2] == 'A')	type = Arcybiskup;
-			if(move[2] == 'N')	type = Kanclerz;
+			if(move[2] == 'K' || move[2] == 'k')	type = Krol;
+			if(move[2] == 'H' || move[2] == 'h')	type = Hetman;
+			if(move[2] == 'W' || move[2] == 'w')	type = Wieza;
+			if(move[2] == 'G' || move[2] == 'g')	type = Goniec;
+			if(move[2] == 'S' || move[2] == 's')	type = Skoczek;
+			if(move[2] == 'P' || move[2] == 'p')	type = Pionek;
+			if(move[2] == 'A' || move[2] == 'a')	type = Arcybiskup;
+			if(move[2] == 'N' || move[2] == 'n')	type = Kanclerz;
 
 			if(plansza1.get_object(x,y).get_type() != type)	goto Ruch1;
 
