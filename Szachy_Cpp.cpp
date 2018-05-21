@@ -28,7 +28,7 @@ int main()
 	cout << "------- SZACHY -------" << endl;
 	cout <<	"----------------------" << endl;
 	cout <<	"Wybor opcji: ---------" << endl;
-	cout <<	"1. Szachy stdandard --" << endl;
+	cout <<	"1. Szachy standardowe --" << endl;
 	cout <<	"2. Szachy 80 pol -----" << endl;
 	cout <<	"3. Szachy 100 pol ----" << endl;
 	cout <<	"----------------------" << endl;
