@@ -39,7 +39,9 @@ public:
 
 	void make_move(int x, int y, int xtarget, int ytarget)
 	{
+		if(_plansza[x][y].get_type() != Skoczek)
 		if(x == xtarget)
+		{
 			if(y < ytarget)
 				if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(Gora))
 				{
@@ -48,9 +50,16 @@ public:
 					_plansza[xtarget][ytarget].set_xy(x, y);
 					_plansza[x][y].set_type(0);
 				}
-			if(y < ytarget)
+			if(y > ytarget)
 				if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(Dol));
-		//_plansza[x][y].
+				{
+					_plansza[xtarget][ytarget].set_team(_plansza[x][y].get_team());
+					_plansza[xtarget][ytarget].set_type(_plansza[x][y].get_type());
+					_plansza[xtarget][ytarget].set_xy(x, y);
+					_plansza[x][y].set_type(0);
+				}
+		}
+
 	}
 private:
 	vector<vector<Figury> > _plansza;
