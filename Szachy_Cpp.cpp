@@ -45,9 +45,9 @@ int main()
 		{
 			cout << "\n";
 			move = "";
-			cout <<"\t"<<"BIALE"<< "\n"; 
+			cout <<"\t"<<"CZARNE"<< "\n"; 
 			plansza1.draw(); //metoda która rysuje plansze
-			cout <<"\t"<<"CZARNE"<< "\n";
+			cout <<"\t"<<"BIALE"<< "\n";
 Ruch: 		cout << "\n" << team_m[who_s]<<" podaj ruch: ";
 			cin >> move; //ruch np A1WA3
 
