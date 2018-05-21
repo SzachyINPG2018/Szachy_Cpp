@@ -35,7 +35,6 @@ int main()
 	cout <<	"9. Wersja gry --------\n" << endl;
 
 
-
 	/* TYLKO TESTY TYLKO TESTY
 	cout << endl << "Roszada 1: "<< plansza1.get_object(XX, YY).get_castling() << endl;
 	plansza1.set_object(2,1,TEAM,0);
