@@ -1,8 +1,11 @@
 /*
  * kolorki.h
+ *  skrypy wykorzystany:
  *
- *  Created on: 22.05.2018
- *      Author: Mariusz
+ *  1 maja 2015
+ *  Waszek Gadu³a
+ *  https://forum.pasja-informatyki.pl/16505/czy-da-sie-zmienic-kolor-tekstu-w-konsoli-c-i-jak
+ *
  */
 
 #ifndef KOLORKI_KOLORKI_H_

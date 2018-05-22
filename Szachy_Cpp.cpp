@@ -43,6 +43,7 @@ int main()
 	//	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 		cout << "Biale rozpoczynaja rozgrywke\n\n";
 
+
 		while(1)
 		{
 			cout << "\n";
