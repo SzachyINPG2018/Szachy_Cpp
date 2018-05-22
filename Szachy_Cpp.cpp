@@ -87,7 +87,10 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 		//tylko debugowanie
 
 			if(plansza1.get_object(x,y).get_team() != who_s) goto Ruch1;
-			if(!plansza1.make_move(x, y, xt, yt)) goto Ruch1;
+			if(!plansza1.make_move(x, y, xt, yt)) 
+			{
+                		if(!plansza1.capture(x, y, xt, yt)) goto Ruch1;
+            		}
 
 			if(who_s == 0)
 				{
