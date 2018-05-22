@@ -40,7 +40,7 @@ public:
 		  _dimension_x(dimension_x),
 		  _dimension_y(dimension_y)
 		{}
-	//~Plansza() {_plansza.clear();} //to nie zadzia³a bo tablica jest dwuwymiarowa
+	//~Plansza() {_plansza.clear();} //to nie zadziaÂ³a bo tablica jest dwuwymiarowa
 
 	Figury get_object(int x, int y)				{return _plansza[x][y];}
 	void set_object(int x, int y, int team, int type)
@@ -113,6 +113,73 @@ public:
 			}
 
 		}
+		if(_plansza[x][y].get_type()==Skoczek)
+        	{
+            		if (x-1==xtarget && y+2==ytarget && (_plansza[x][y].get_elongation_move(0)==1))
+            		{
+                		set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+           		}
+            		if (x+1==xtarget && y+2==ytarget && (_plansza[x][y].get_elongation_move(1)==1))
+		    	{
+               			set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+           		}
+            		if (xtarget==x+2 && ytarget==y+1 && (_plansza[x][y].get_elongation_move(2)==1))
+            		{
+                		set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+            		}
+            		if (xtarget==x+2 && ytarget==y-1 && (_plansza[x][y].get_elongation_move(3)==1))
+            		{
+                		set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+            		}
+            		if (xtarget==x+1 && ytarget==y-2 && (_plansza[x][y].get_elongation_move(4)==1))
+            		{
+                		set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+            		}
+            		if (xtarget==x-1 && ytarget==y-2 && (_plansza[x][y].get_elongation_move(5)==1))
+            		{
+               			set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+            		}
+            		if (xtarget==x-2 && ytarget==y-1 && (_plansza[x][y].get_elongation_move(6)==1))
+            		{
+                		set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+            		}
+            		if (xtarget==x-2 && ytarget==y+1 && (_plansza[x][y].get_elongation_move(7)==1))
+            		{
+                		set_object(xtarget, ytarget,
+								_plansza[x][y].get_team(),
+								_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
+					return 1;
+            		}
+        	}
 		return 0;
 	}
 
