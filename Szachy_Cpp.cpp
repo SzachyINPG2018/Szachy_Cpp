@@ -7,6 +7,7 @@
 #include "Figury/Figury.h"
 #include "plansza/Plansza.h"
 #include "plansza/8x8/Plansza8x8.h"
+#include "kolorki/kolorki.h"
 
 using std::cout;
 using std::cin;
@@ -16,7 +17,7 @@ using std::vector;
 
 int main()
 {
-	Plansza plansza1(8, 8);
+		Plansza plansza1(8, 8);
 	Plansza8x8 init(plansza1);		//te dwie linie to utworzenie planszy 8x8 i ustawienie figur
 	//int i, n;
 	int choice=1;
@@ -41,13 +42,14 @@ int main()
 	{
 	//	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 		cout << "Biale rozpoczynaja rozgrywke\n\n";
+
+
 		while(1)
 		{
 			cout << "\n";
 			move = "";
-			cout <<"\t"<<"CZARNE"<< "\n"; 
+			system("CLS");
 			plansza1.draw(); //metoda która rysuje plansze
-			cout <<"\t"<<"BIALE"<< "\n";
 Ruch: 		cout << "\n" << team_m[who_s]<<" podaj ruch: ";
 			cin >> move; //ruch np A1WA3
 
@@ -106,7 +108,16 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 	system("PAUSE");
 	return 0;
 }
-//ok
+
+
+
+
+
+
+
+
+
+
 
 /* TYLKO TESTY TYLKO TESTY
 	cout << endl << "Roszada 1: "<< plansza1.get_object(XX, YY).get_castling() << endl;
