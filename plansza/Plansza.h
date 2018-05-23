@@ -353,42 +353,76 @@ public:
    	}
 
 	void draw(void)
-	{
-		char znak;
-		for(int x=0; x < _dimension_x; x++) cout << "-" << char(x+'a');
-		cout << "---\n";
-		for(int y=_dimension_y-1; y >=0; y--)
 		{
-			for(int x=0; x < _dimension_x; x++)
+			std::string color;
+			std::cout <<"     ";
+			SetColor("D0");
+			char znak;
+			std::cout <<"CZARNE"<< "\n";
+			SetColor("2D");
+			std::cout << "--";
+			for(int x=0; x < _dimension_x; x++) std::cout << "-" << char(x+'a');
+			std::cout << "---\n";
+			for(int x=0; x < _dimension_x; x++) std::cout << "--";
+			std::cout << "-----\n";
+			for(int y=_dimension_y-1; y >=0; y--)
 			{
-				cout << "-";
-				znak = _plansza[x+1][y+1].get_type();
-				switch( znak )
+				SetColor("2D");
+				std::cout << "--";
+				for(int x=0; x < _dimension_x; x++)
 				{
-				case 0:
-					znak = ' '; 		break;
-				case Krol:
-					znak = Krolznak;	break;
-				case Hetman:
-					znak = Hetmanznak;	break;
-				case Wieza:
-					znak = Wiezaznak;	break;
-				case Goniec:
-					znak = Goniecznak;	break;
-				case Skoczek:
-					znak = Skoczekznak;	break;
-				case Pionek:
-					znak = Pionekznak;	break;
-				case Arcybiskup:
-					znak = Arcybiskupznak;	break;
-				case Kanclerz:
-					znak = Kanclerzznak;	break;
+					SetColor("EE");
+					std::cout << "-";
+
+					if(_plansza[x+1][y+1].get_team()==1 )
+					{
+						if((x+y)%2)	SetColor("64");
+						else SetColor("E4");
+					}
+					if(_plansza[x+1][y+1].get_team()==0)
+					{
+						if((x+y)%2)	SetColor("6A");
+						else SetColor("EA");
+					}
+
+
+					znak = _plansza[x+1][y+1].get_type();
+					//color;
+					switch( znak )
+					{
+					case 0:
+						znak = ' '; 		break;
+					case Krol:
+						znak = Krolznak;	break;
+					case Hetman:
+						znak = Hetmanznak;	break;
+					case Wieza:
+						znak = Wiezaznak;	break;
+					case Goniec:
+						znak = Goniecznak;	break;
+					case Skoczek:
+						znak = Skoczekznak;	break;
+					case Pionek:
+						znak = Pionekznak;	break;
+					case Arcybiskup:
+						znak = Arcybiskupznak;	break;
+					case Kanclerz:
+						znak = Kanclerzznak;	break;
+					}
+					std::cout << znak;
 				}
-				cout << znak;
+
+				SetColor("2D");
+
+
+				std::cout << "--" << y+1 << "\n";
+
 			}
-			cout << "--" << y+1 << "\n";
+			for(int x=0; x < _dimension_x; x++) std::cout << "--";
+			std::cout << "-----\n";
+			SetColor("ED");
+			std::cout <<"     "<<"BIALE"<< "\n";
 		}
-	}
 
 
 
