@@ -36,6 +36,7 @@ enum figury
 	Kanclerz
 };
 
+
 enum kierunek_ruchu
 {
 	Gora=0,
