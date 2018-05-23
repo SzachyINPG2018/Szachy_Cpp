@@ -114,7 +114,7 @@ public:
 
 		}
 		if(_plansza[x][y].get_type()==Skoczek)
-        {
+        	{
 			if (x-1==xtarget && y+2==ytarget && (_plansza[x][y].get_elongation_move(0)==1))
 			{
 				set_object(xtarget, ytarget,
@@ -179,7 +179,7 @@ public:
 				_plansza[x][y].set_type(0);
 				return 1;
 			}
-        }
+        	}
 		return 0;
 	}
 
