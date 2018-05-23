@@ -332,10 +332,10 @@ public:
                 		(_plansza[x][y].get_elongation_move(6)==0) &&
                 		(_plansza[x][y].get_team()!= _plansza[xtarget][ytarget].get_team()))
 			{
-                		_plansza[xtarget][ytarget].set_type(0);
+                _plansza[xtarget][ytarget].set_type(0);
 				set_object(xtarget, ytarget,
-					_plansza[x][y].get_team()
-					_plansza[x][y].get_type());
+						_plansza[x][y].get_team(),
+						_plansza[x][y].get_type());
 				_plansza[x][y].set_type(0);
 				return 1;
 			}
