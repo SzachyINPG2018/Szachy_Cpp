@@ -1,0 +1,13 @@
+istnieją 2 plansze do grania szachów na 3
+
+na bazie koła: szachy.jpg 
+i heksagonalne: szachy3.jpg lub Chess_for_Three_-_Hexagonal_Board.jpg
+szachy heksagonalne składają się 3 części 4x8
+przykładowa część:
+   const char 1czesc[8][4] =
+  {{I_CWIEZA, I_CSKOCZEK, I_CGONIEC, I_CHETMAN, I_CKROL, I_CGONIEC, I_CSKOCZEK, I_CWIEZA},
+   {I_CPION , I_CPION   , I_CPION  , I_CPION  , I_CPION, I_CPION  , I_CPION   , I_CPION },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },
+   {I_PUSTE , I_PUSTE   , I_PUSTE  , I_PUSTE  , I_PUSTE, I_PUSTE  , I_PUSTE   , I_PUSTE },};
+   przy czym przejścia z każdej części muszą byc odpowiednio połączone tak żeby  z 1czesc[1][4] przechodiło się do 2czesc[1][4] i
+   pozycji 1czesc[4][4] przechodiło się do2czesc[4][4] itp., ale z pozycji 1czesc[5][4] powinno się przejśc do 3czesc[5][4] itp.

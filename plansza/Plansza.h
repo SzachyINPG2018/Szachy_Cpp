@@ -10,14 +10,12 @@
 #define PLANSZA_PLANSZA_H_
 
 #include "../Figury/Figury.h"
-#include "../kolorki/kolorki.h"
 #include <vector>
 #include <math.h>
 #include <iostream>
-#include <string>
 
 using std::vector;
-
+using std::cout;
 
 enum figuryznaki
 {
@@ -332,10 +330,10 @@ public:
                 		(_plansza[x][y].get_elongation_move(6)==0) &&
                 		(_plansza[x][y].get_team()!= _plansza[xtarget][ytarget].get_team()))
 			{
-                _plansza[xtarget][ytarget].set_type(0);
+                		_plansza[xtarget][ytarget].set_type(0);
 				set_object(xtarget, ytarget,
-						_plansza[x][y].get_team(),
-						_plansza[x][y].get_type());
+					_plansza[x][y].get_team()
+					_plansza[x][y].get_type());
 				_plansza[x][y].set_type(0);
 				return 1;
 			}
@@ -356,40 +354,15 @@ public:
 
 	void draw(void)
 	{
-		std::string color;
-		std::cout <<"     ";
-		SetColor("D0");
 		char znak;
-		std::cout <<"CZARNE"<< "\n";
-		SetColor("2D");
-		std::cout << "--";
-		for(int x=0; x < _dimension_x; x++) std::cout << "-" << char(x+'a');
-		std::cout << "---\n";
-		for(int x=0; x < _dimension_x; x++) std::cout << "--";
-		std::cout << "-----\n";
+		for(int x=0; x < _dimension_x; x++) cout << "-" << char(x+'a');
+		cout << "---\n";
 		for(int y=_dimension_y-1; y >=0; y--)
 		{
-			SetColor("2D");
-			std::cout << "--";
 			for(int x=0; x < _dimension_x; x++)
 			{
-				SetColor("EE");
-				std::cout << "-";
-
-				if(_plansza[x+1][y+1].get_team()==1 )
-				{
-					if((x+y)%2)	SetColor("64");
-					else SetColor("E4");
-				}
-				if(_plansza[x+1][y+1].get_team()==0)
-				{
-					if((x+y)%2)	SetColor("6A");
-					else SetColor("EA");
-				}
-
-
+				cout << "-";
 				znak = _plansza[x+1][y+1].get_type();
-				//color;
 				switch( znak )
 				{
 				case 0:
@@ -411,19 +384,10 @@ public:
 				case Kanclerz:
 					znak = Kanclerzznak;	break;
 				}
-				std::cout << znak;
+				cout << znak;
 			}
-
-			SetColor("2D");
-
-
-			std::cout << "--" << y+1 << "\n";
-
+			cout << "--" << y+1 << "\n";
 		}
-		for(int x=0; x < _dimension_x; x++) std::cout << "--";
-		std::cout << "-----\n";
-		SetColor("ED");
-		std::cout <<"     "<<"BIALE"<< "\n";
 	}
 
 
