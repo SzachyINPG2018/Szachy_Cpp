@@ -25,6 +25,7 @@ int main()
 	int x=0, y=0, type=0, xt=0, yt=0;
 	vector<string> team_m = {"Biale", "Czarne"};
 /*
+ *
 	cout <<	"------------------------" << endl;
 	cout << "-------- SZACHY --------" << endl;
 	cout <<	"------------------------" << endl;
