@@ -185,167 +185,172 @@ public:
 
 	int capture(int x, int y, int xtarget, int ytarget)
     	{
-        	int direction=0;
-		if((x == xtarget && y == ytarget) || 
-		   xtarget<1 || xtarget>_dimension_x || 
-		   ytarget<1 || ytarget> _dimension_y) return 0;
+       		int direction=0;
+		if((x == xtarget && y == ytarget) ||
+		   xtarget<1 || xtarget>_dimension_x ||
+		   ytarget<1 || ytarget> _dimension_y ||
+		  (_plansza[xtarget][ytarget].get_type()==0)) return 0;
+
+        	if((x==xtarget && y==ytarget) && ( _plansza[x][y].get_type()==Wieza ||
+		   (_plansza[x][y].get_type()==Hetman) ||(
+			_plansza[x][y].get_type()==Krol)))
+        	{
+           		if(abs(y-ytarget)!=1 && _plansza[x][y].get_type()==Krol) return 0;
+            		if(y < ytarget) direction = Gora;
+            		if(y > ytarget)	direction = Dol;
+
+            		if(abs(ytarget - y) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
+
+            		if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
+            		{
+                		_plansza[xtarget][ytarget].set_type(0);
+                		set_object(xtarget, ytarget,
+                    			_plansza[x][y].get_team(),
+                    			_plansza[x][y].get_type());
+                		_plansza[x][y].set_type(0);
+                		return 1;
+            		}
+        	}
+
+        	if((abs(xtarget - x) == abs(ytarget - y)) &&
+        		(_plansza[x][y].get_type()==Goniec ||
+            		_plansza[x][y].get_type()==Hetman ||
+            		_plansza[x][y].get_type()==Krol))
+        	{
+            		if(abs(x-xtarget!=1) && _plansza[x][y].get_type()==Krol) return 0;
+            		if(x < xtarget && y < ytarget) direction = GoraPrawo;
+            		if(x < xtarget && y > ytarget) direction = DolPrawo;
+            		if(x > xtarget && y > ytarget) direction = DolLewo;
+            		if(x > xtarget && y < ytarget) direction = GoraLewo;
+
+            		if(abs(ytarget - y) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
+
+            		if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
+            		{
+                		_plansza[xtarget][ytarget].set_type(0);
+                		set_object(xtarget, ytarget,
+                	        	_plansza[x][y].get_team(),
+                	        	_plansza[x][y].get_type());
+                		_plansza[x][y].set_type(0);
+                		return 1;
+            		}
+        	}
+
+        	if(y == ytarget && (_plansza[x][y].get_type()==Wieza ||
+           		_plansza[x][y].get_type()==Hetman ||
+            		_plansza[x][y].get_type()==Krol))
+        	{
+        		if(abs(y-ytarget)!=1 && _plansza[x][y].get_type()==Krol) return 0;
+        		if(x < xtarget) direction = Prawo;
+         		if(x > xtarget)	direction = Lewo;
+
+         		if(abs(xtarget - x) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
+
+         		if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
+            		{
+                		_plansza[xtarget][ytarget].set_type(0);
+                 		set_object(xtarget, ytarget,
+					_plansza[x][y].get_team(),		
+					_plansza[x][y].get_type());
+                		_plansza[x][y].set_type(0);
+                		return 1;
+            		}
+        	}
 
 
-		if(_plansza[x][y].get_type() != Skoczek &&
-			_plansza[x][y].get_type() != Arcybiskup &&
-			_plansza[x][y].get_type() != Kanclerz &&
-            		_plansza[x][y].get_type() != Pionek)
-		{
-			if(x == xtarget)
-			{
-				if(y < ytarget) direction = Gora;
-				if(y > ytarget)	direction = Dol;
-
-				if(abs(ytarget - y) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
-
-                		if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
-                		{
-					_plansza[xtarget][ytarget].set_type(0);
-					set_object(xtarget, ytarget,
-							_plansza[x][y].get_team(),
-							_plansza[x][y].get_type());
-					_plansza[x][y].set_type(0);
-					return 1;
-				}
-			}
-
-			if(abs(xtarget - x) == abs(ytarget - y))
-			{
-				if(x < xtarget && y < ytarget) direction = GoraPrawo;
-				if(x < xtarget && y > ytarget) direction = DolPrawo;
-				if(x > xtarget && y > ytarget) direction = DolLewo;
-				if(x > xtarget && y < ytarget) direction = GoraLewo;
-
-				if(abs(ytarget - y) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
-
-                		if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
-                		{
-					_plansza[xtarget][ytarget].set_type(0);
-					set_object(xtarget, ytarget,
-							_plansza[x][y].get_team(),
-							_plansza[x][y].get_type());
-					_plansza[x][y].set_type(0);
-					return 1;
-				}
-			}
-
-			if(y == ytarget)
-			{
-				if(x < xtarget) direction = Prawo;
-				if(x > xtarget)	direction = Lewo;
-
-				if(abs(xtarget - x) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
-
-                		if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
-                		{
-					_plansza[xtarget][ytarget].set_type(0);
-					set_object(xtarget, ytarget,
-							_plansza[x][y].get_team(),
-							_plansza[x][y].get_type());
-					_plansza[x][y].set_type(0);
-					return 1;
-				}
-			}
-
-		}
 		if(_plansza[x][y].get_type()==Skoczek)
         	{
 			if (x-1==xtarget && y+2==ytarget &&
-                	(_plansza[x][y].get_elongation_move(0)==0) &&
-                	(_plansza[x][y].get_team()!= _plansza[xtarget][ytarget].get_team()))
+                		(_plansza[x][y].get_elongation_move(0)==0) &&
+                		(_plansza[x][y].get_team()!= _plansza[xtarget][ytarget].get_team()))
 			{
                 		_plansza[xtarget][ytarget].set_type(0);
 				set_object(xtarget, ytarget,
-						_plansza[x][y].get_team(),
-						_plansza[x][y].get_type());
+					_plansza[x][y].get_team(),
+					_plansza[x][y].get_type());
 				_plansza[x][y].set_type(0);
 				return 1;
 			}
 			if (x+1==xtarget && y+2==ytarget &&
-                	(_plansza[x][y].get_elongation_move(1)==0) &&
-                	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+                		(_plansza[x][y].get_elongation_move(1)==0) &&
+                		(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
 			{
                 		_plansza[xtarget][ytarget].set_type(0);
 				set_object(xtarget, ytarget,
-						_plansza[x][y].get_team(),
-						_plansza[x][y].get_type());
+					_plansza[x][y].get_team(),
+					_plansza[x][y].get_type());
 				_plansza[x][y].set_type(0);
 				return 1;
 			}
 			if (xtarget==x+2 && ytarget==y+1 &&
-                	(_plansza[x][y].get_elongation_move(2)==0) &&
-                	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+        	        	(_plansza[x][y].get_elongation_move(2)==0) &&
+        	        	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
 			{
-                		_plansza[xtarget][ytarget].set_type(0);
+        	        	_plansza[xtarget][ytarget].set_type(0);
 				set_object(xtarget, ytarget,
-						_plansza[x][y].get_team(),
-						_plansza[x][y].get_type());
-				_plansza[x][y].set_type(0);
+					_plansza[x][y].get_team(),
+					_plansza[x][y].get_type());
+					_plansza[x][y].set_type(0);
 				return 1;
 			}
 			if (xtarget==x+2 && ytarget==y-1 &&
-                	(_plansza[x][y].get_elongation_move(3)==0) &&
-                	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+                		(_plansza[x][y].get_elongation_move(3)==0) &&
+                		(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
 			{
                 		_plansza[xtarget][ytarget].set_type(0);
 				set_object(xtarget, ytarget,
-						_plansza[x][y].get_team(),
-						_plansza[x][y].get_type());
+                        		_plansza[x][y].get_team(),
+					_plansza[x][y].get_type());
 				_plansza[x][y].set_type(0);
 				return 1;
 			}
 			if (xtarget==x+1 && ytarget==y-2 &&
-                	(_plansza[x][y].get_elongation_move(4)==0) &&
-                	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+        	        	(_plansza[x][y].get_elongation_move(4)==0) &&
+        	        	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
 			{
-                		_plansza[xtarget][ytarget].set_type(0);
+        	        	_plansza[xtarget][ytarget].set_type(0);
 				set_object(xtarget, ytarget,
-						_plansza[x][y].get_team(),
-						_plansza[x][y].get_type());
+					_plansza[x][y].get_team(),
+					_plansza[x][y].get_type());
 				_plansza[x][y].set_type(0);
 				return 1;
 			}
 			if (xtarget==x-1 && ytarget==y-2 &&
-                	(_plansza[x][y].get_elongation_move(5)==0) &&
-                	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+                		(_plansza[x][y].get_elongation_move(5)==0) &&
+                		(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
 			{
-                		_plansza[xtarget][ytarget].set_type(0);
+	        	        _plansza[xtarget][ytarget].set_type(0);
 				set_object(xtarget, ytarget,
-						_plansza[x][y].get_team(),
-						_plansza[x][y].get_type());
+					_plansza[x][y].get_team(),
+					_plansza[x][y].get_type());
 				_plansza[x][y].set_type(0);
 				return 1;
 			}
 			if (xtarget==x-2 && ytarget==y-1 &&
-                	(_plansza[x][y].get_elongation_move(6)==0) &&
-                	(_plansza[x][y].get_team()!= _plansza[xtarget][ytarget].get_team()))
+                		(_plansza[x][y].get_elongation_move(6)==0) &&
+                		(_plansza[x][y].get_team()!= _plansza[xtarget][ytarget].get_team()))
 			{
                 		_plansza[xtarget][ytarget].set_type(0);
 				set_object(xtarget, ytarget,
-						_plansza[x][y].get_team(),
-						_plansza[x][y].get_type());
+					_plansza[x][y].get_team()
+					_plansza[x][y].get_type());
 				_plansza[x][y].set_type(0);
 				return 1;
 			}
 			if (xtarget==x-2 && ytarget==y+1 &&
-                	(_plansza[x][y].get_elongation_move(7)==0) &&
-                	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
-			{
+                		(_plansza[x][y].get_elongation_move(7)==0) &&
+                		(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+            		{
                 		_plansza[xtarget][ytarget].set_type(0);
-				set_object(xtarget, ytarget,
-						_plansza[x][y].get_team(),
-						_plansza[x][y].get_type());
-				_plansza[x][y].set_type(0);
-				return 1;
-			}
+                		set_object(xtarget, ytarget,
+                    			_plansza[x][y].get_team(),
+                	    		_plansza[x][y].get_type());
+                		_plansza[x][y].set_type(0);
+              			return 1;
+            		}
         	}
 		return 0;
-    	}
+   	}
 
 	void draw(void)
 	{
