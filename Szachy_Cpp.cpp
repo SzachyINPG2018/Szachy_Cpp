@@ -17,7 +17,7 @@ using std::vector;
 
 int main()
 {
-		Plansza plansza1(8, 8);
+	Plansza plansza1(8, 8);
 	Plansza8x8 init(plansza1);		//te dwie linie to utworzenie planszy 8x8 i ustawienie figur
 	//int i, n;
 	int choice=1;

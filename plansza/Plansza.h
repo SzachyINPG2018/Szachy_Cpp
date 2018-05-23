@@ -4,8 +4,6 @@
  *  Created on: 29.04.2018
  *      Author: Mariusz
  */
-
-
 #ifndef PLANSZA_PLANSZA_H_
 #define PLANSZA_PLANSZA_H_
 
@@ -17,7 +15,6 @@
 #include <string>
 
 using std::vector;
-
 
 enum figuryznaki
 {
