@@ -35,7 +35,6 @@ int main()
 	cout <<	"3. Szachy 100 pol ------" << endl;
 	cout <<	"------------------------" << endl;
 	cout <<	"9. Wersja gry ----------\n" << endl;
-
 	cin >> choice;
 */
 	if(choice == 1)
@@ -46,10 +45,8 @@ int main()
 		{
 			cout << "\n";
 			move = "";
-			cout <<"\t"<<"CZARNE"<< "\n"; 
 			plansza1.draw(); //metoda która rysuje plansze
-			cout <<"\t"<<"BIALE"<< "\n";
-Ruch: 		cout << "\n" << team_m[who_s]<<" podaj ruch: ";
+Ruch:       cout << "\n" << team_m[who_s]<<" podaj ruch: ";
 			cin >> move; //ruch np A1WA3
 
 			if(move == "exit") return 0; //wyjscie z gry
@@ -88,7 +85,7 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 		//tylko debugowanie
 
 			if(plansza1.get_object(x,y).get_team() != who_s) goto Ruch1;
-			if(!plansza1.make_move(x, y, xt, yt)) 
+			if(!plansza1.make_move(x, y, xt, yt))
 			{
                 		if(!plansza1.capture(x, y, xt, yt)) goto Ruch1;
             		}
@@ -121,11 +118,8 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 	cout << endl << "Roszada krotka: "<< plansza1.get_object(XX, YY).get_castling() << endl;
 	plansza1.set_object(2,1,TEAM,0);
 	cout << endl << "Roszady obie: "<< plansza1.get_object(XX, YY).get_castling() << endl;
-
-
 	i = plansza1.get_object(XX,YY).get_possible_move();
 	cout << endl << "Ruch: "<< i << endl;
-
 	if(plansza1.get_object(XX,YY).get_type()!=Skoczek &&
 			plansza1.get_object(XX,YY).get_type()!=Arcybiskup &&
 			plansza1.get_object(XX,YY).get_type()!=Kanclerz)
@@ -136,13 +130,11 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 		cout<< n << " ";
 		n = plansza1.get_object(XX,YY).get_elongation_move(1);
 		cout<< n << "\n";
-
 		n = plansza1.get_object(XX,YY).get_elongation_move(6);
 		cout<< n << " ";
 		cout<< " " << " ";
 		n = plansza1.get_object(XX,YY).get_elongation_move(2);
 		cout<< n << "\n";
-
 		n = plansza1.get_object(XX,YY).get_elongation_move(5);
 		cout<< n << " ";
 		n = plansza1.get_object(XX,YY).get_elongation_move(4);
@@ -197,8 +189,6 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 				cout<< n << " ";
 				n = plansza1.get_object(XX,YY).get_elongation_move(10);
 				cout<< n << " ";
-
-
 				n = plansza1.get_object(XX,YY).get_elongation_move(3);
 				cout<< n << "\n ";
 				n = plansza1.get_object(XX,YY).get_elongation_move(5);
@@ -206,7 +196,6 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 				n = plansza1.get_object(XX,YY).get_elongation_move(4);
 				cout<< n << "\n";
 			}
-
 	else
 	{
 		n = plansza1.get_object(XX,YY).get_elongation_move(0);
@@ -226,6 +215,4 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 		n = plansza1.get_object(XX,YY).get_elongation_move(4);
 		cout<< n << "\n";
 	}
-
-
 */

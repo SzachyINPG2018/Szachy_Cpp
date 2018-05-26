@@ -69,10 +69,13 @@ public:
 	void set_xy(int x, int y) { _x = x; _y = y;}
 	void set_team(int team)	{_team = team;}
 	void set_type(int type)	{_type = type;}
+	void set_last_xy (int x, int y) {_last_x=x; _last_y=y;}
 	int get_team(void)	{return _team;}
 	int get_type(void)	{return _type;}
 	int get_x(void) {return _x;}
 	int get_y(void) {return _y;}
+	int get_last_x(void) {return _last_x;}
+	int get_last_y(void) {return _last_y;}
 
 	int get_possible_move(void) {return _possible_move;}
 	void calc_possible_move(vector<vector<Figury> > _plansza, int dimension_x, int dimension_y); //metoda obliczaj mo¿liwy ruch
@@ -99,6 +102,8 @@ private:
 	int _x, _y;	//wspolrzedne
 	int _team;	//biale = 0 czy czarne = 1
 	int _type;
+	int _last_x;
+	int _last_y;
 	int _flag_move;
 	int _flag_castling; //flaga zezwalaj¹ca na roszade 0 - nie 1- krótka 2- dluga 3- obie
 
