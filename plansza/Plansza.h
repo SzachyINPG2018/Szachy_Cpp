@@ -244,29 +244,29 @@ public:
            		_plansza[x][y].get_type()==Krol ||
                 _plansza[x][y].get_type()== Pionek))
         {
-        	if((_plansza[x][y].get_type()==Krol || _plansza[x][y].get_type()== Pionek) && abs(x-xtarget)!=1) {cout<< "1"; return 0;}
+        	if((_plansza[x][y].get_type()==Krol || _plansza[x][y].get_type()== Pionek) && abs(x-xtarget)!=1) return 0;
         	if(x < xtarget && y > ytarget)
                 {
-                if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==0) {cout<< "2"; return 0;}
+                if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==0) return 0;
                 direction = DolPrawo;
                 }
         	if(x > xtarget && y > ytarget)
         	 {
-                if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==0) {cout<< "3"; return 0;}
+                if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==0) return 0;
                 direction = DolLewo;
             }
         	if(x < xtarget && y < ytarget)
             {
-                if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==1) {cout<< "4"; return 0;}
+                if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==1) return 0;
                 direction = GoraPrawo;
             }
         	if(x > xtarget && y < ytarget && _plansza[x][y].get_type()!= Pionek )
         	{
-                if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==1) {cout<< "5"; return 0;}
+                if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==1) return 0;
                 direction = GoraLewo;
             }
 
-        	if(abs(ytarget - y) != (_plansza[x][y].get_elongation_move(direction) + 1)) {cout<< "6"; return 0;}
+        	if(abs(ytarget - y) != (_plansza[x][y].get_elongation_move(direction) + 1)) return 0;
 
         	if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
         	{
