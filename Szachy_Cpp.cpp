@@ -101,7 +101,6 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 	{
 		Plansza plansza1(10, 8);
         	Plansza10x8 init(plansza1);		//te dwie linie to utworzenie planszy 10x8 i ustawienie figur
-        	cout<<"h";
         	string move;
         	int who_s=0;
         	int x=0, y=0, type=0, xt=0, yt=0;
