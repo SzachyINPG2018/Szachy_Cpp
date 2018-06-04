@@ -6,7 +6,7 @@
 class Plansza10x10
 {
 public:
-	Plansza8x8(Plansza& _10x10)
+	Plansza10x10(Plansza& _10x10)
 	{
 		//Plansza _10x10(10,10);
 
