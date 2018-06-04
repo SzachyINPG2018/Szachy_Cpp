@@ -17,7 +17,7 @@ void Plansza::set_object(int x, int y, int team, int type, int last_x, int last_
 	_plansza[x][y].set_last_xy(last_x, last_y);
 	for(int i=1; i <= _dimension_x; i++)
 		for(int j=1; j <= _dimension_y; j++)
-            _plansza[i][j].calc_possible_move(_plansza, _dimension_x, _dimension_y);
+            		_plansza[i][j].calc_possible_move(_plansza, _dimension_x, _dimension_y);
 }
 
 int Plansza::make_move(int x, int y, int xtarget, int ytarget)
@@ -37,51 +37,51 @@ int Plansza::make_move(int x, int y, int xtarget, int ytarget)
 			if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(direction))
 			{
 				if (_plansza[x][y].get_type()==Pionek)
-                {
-                    if(_plansza[xtarget-1][ytarget].get_type()==Pionek &&
-                            abs(_plansza[xtarget-1][ytarget].get_last_y()-ytarget)==2 &&
-                            _newest_x==xtarget &&
-                            _newest_y==ytarget)
-                    {
+                		{
+                			if(_plansza[xtarget-1][ytarget].get_type()==Pionek &&
+                        		abs(_plansza[xtarget-1][ytarget].get_last_y()-ytarget)==2 &&
+                        		_newest_x==xtarget &&
+                        		_newest_y==ytarget)
+                    			{
 						_plansza[xtarget-1][ytarget].set_type(0);
-                    }
-                    if((_plansza[xtarget+1][ytarget].get_type()==Pionek) &&
-                            abs(_plansza[xtarget+1][ytarget].get_last_y()-ytarget)==2 &&
-                            _newest_x==xtarget &&
-                            _newest_y==ytarget)
-                    {
-                        _plansza[xtarget+1][ytarget].set_type(0);
-                    }
-                }
-                set_object(xtarget, ytarget,
-                            _plansza[x][y].get_team(),
-                            _plansza[x][y].get_type(),
-                            x, y);
-                _plansza[x][y].set_type(0);
+                			}
+                			if((_plansza[xtarget+1][ytarget].get_type()==Pionek) &&
+                        		abs(_plansza[xtarget+1][ytarget].get_last_y()-ytarget)==2 &&
+                        		_newest_x==xtarget &&
+                        		_newest_y==ytarget)
+					{
+						_plansza[xtarget+1][ytarget].set_type(0);
+                			}
+                		}
+                		set_object(xtarget, ytarget,
+                        		_plansza[x][y].get_team(),
+                        		_plansza[x][y].get_type(),
+                        		x, y);
+                		_plansza[x][y].set_type(0);
 				_newest_x=xtarget;
 				_newest_y=ytarget;
 				return 1;
-            }
-        }
+			}
+        	}
 
-        if(abs(xtarget - x) == abs(ytarget - y))
-        {
-            if(x < xtarget && y < ytarget) direction = GoraPrawo;
-            if(x < xtarget && y > ytarget) direction = DolPrawo;
-            if(x > xtarget && y > ytarget) direction = DolLewo;
-            if(x > xtarget && y < ytarget) direction = GoraLewo;
-            if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(direction))
-            {
-                set_object(xtarget, ytarget,
-                            _plansza[x][y].get_team(),
-                            _plansza[x][y].get_type(),
-                            x, y);
-                _plansza[x][y].set_type(0);
-                _newest_x=xtarget;
-                _newest_y=ytarget;
-                return 1;
-            }
-        }
+        	if(abs(xtarget - x) == abs(ytarget - y))
+        	{
+        		if(x < xtarget && y < ytarget) direction = GoraPrawo;
+        		if(x < xtarget && y > ytarget) direction = DolPrawo;
+        		if(x > xtarget && y > ytarget) direction = DolLewo;
+        		if(x > xtarget && y < ytarget) direction = GoraLewo;
+        		if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(direction))
+        		{
+                		set_object(xtarget, ytarget,
+                            		_plansza[x][y].get_team(),
+                            		_plansza[x][y].get_type(),
+                            		x, y);
+                		_plansza[x][y].set_type(0);
+                		_newest_x=xtarget;
+                		_newest_y=ytarget;
+                		return 1;
+            		}
+        	}
 
 		if(y == ytarget)
 		{
@@ -101,16 +101,17 @@ int Plansza::make_move(int x, int y, int xtarget, int ytarget)
 			}
 		}
 	}
+	
 	if(_plansza[x][y].get_type()==Skoczek ||
         _plansza[x][y].get_type()==Kanclerz ||
         _plansza[x][y].get_type()== Arcybiskup)
    	{
-        if (x-1==xtarget && y+2==ytarget && (_plansza[x][y].get_elongation_move(0)==1))
+        	if (x-1==xtarget && y+2==ytarget && (_plansza[x][y].get_elongation_move(0)==1))
 		{
 			set_object(xtarget, ytarget,
-					_plansza[x][y].get_team(),
-                    			_plansza[x][y].get_type(),
-                    			x, y);
+				_plansza[x][y].get_team(),
+                    		_plansza[x][y].get_type(),
+                    		x, y);
 			_plansza[x][y].set_type(0);
 			_newest_x=xtarget;
 			_newest_y=ytarget;
@@ -119,9 +120,9 @@ int Plansza::make_move(int x, int y, int xtarget, int ytarget)
 		if (x+1==xtarget && y+2==ytarget && (_plansza[x][y].get_elongation_move(1)==1))
 		{
 			set_object(xtarget, ytarget,
-					_plansza[x][y].get_team(),
-					_plansza[x][y].get_type(),
-                   			x, y);
+				_plansza[x][y].get_team(),
+				_plansza[x][y].get_type(),
+                   		x, y);
 			_plansza[x][y].set_type(0);
 			_newest_x=xtarget;
 			_newest_y=ytarget;
@@ -154,7 +155,7 @@ int Plansza::make_move(int x, int y, int xtarget, int ytarget)
 			set_object(xtarget, ytarget,
 				_plansza[x][y].get_team(),
 				_plansza[x][y].get_type(),
-                x, y);
+                		x, y);
 			_plansza[x][y].set_type(0);
 			_newest_x=xtarget;
 			_newest_y=ytarget;
@@ -163,9 +164,9 @@ int Plansza::make_move(int x, int y, int xtarget, int ytarget)
 		if (xtarget==x-1 && ytarget==y-2 && (_plansza[x][y].get_elongation_move(5)==1))
 		{
 			set_object(xtarget, ytarget,
-                    _plansza[x][y].get_team(),
-                    _plansza[x][y].get_type(),
-                    x, y);
+                    		_plansza[x][y].get_team(),
+                    		_plansza[x][y].get_type(),
+                    		x, y);
 			_plansza[x][y].set_type(0);
 			_newest_x=xtarget;
 			_newest_y=ytarget;
@@ -196,60 +197,59 @@ int Plansza::make_move(int x, int y, int xtarget, int ytarget)
 	}
 	if(_plansza[x][y].get_type()== Arcybiskup &&
         abs(xtarget - x) == abs(ytarget - y))
-    {
-        if(x < xtarget && y < ytarget) direction = GoraGoraPrawo;
-        if(x < xtarget && y > ytarget) direction = PrawoDolPrawo;
-        if(x > xtarget && y > ytarget) direction = DolDolLewo;
-        if(x > xtarget && y < ytarget) direction = LewoGoraLewo;
-        if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(direction))
-        {
-            set_object(xtarget, ytarget,
-                        _plansza[x][y].get_team(),
-                        _plansza[x][y].get_type(),
-                        x, y);
-            _plansza[x][y].set_type(0);
-            _newest_x=xtarget;
-            _newest_y=ytarget;
-            return 1;
-        }
-    }
+    	{
+        	if(x < xtarget && y < ytarget) direction = GoraGoraPrawo;
+        	if(x < xtarget && y > ytarget) direction = PrawoDolPrawo;
+        	if(x > xtarget && y > ytarget) direction = DolDolLewo;
+        	if(x > xtarget && y < ytarget) direction = LewoGoraLewo;
+        	if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(direction))
+        	{
+        		set_object(xtarget, ytarget,
+                        	_plansza[x][y].get_team(),
+                        	_plansza[x][y].get_type(),
+                        	x, y);
+            		_plansza[x][y].set_type(0);
+            		_newest_x=xtarget;
+            		_newest_y=ytarget;
+            		return 1;
+        	}
+    	}
 
-    if(_plansza[x][y].get_type()==Kanclerz)
-    {
-        if(x == xtarget)
+    	if(_plansza[x][y].get_type()==Kanclerz)
+    	{
+        	if(x == xtarget)
 		{
 			if(y < ytarget) direction = GoraGoraPrawo;
 			if(y > ytarget)	direction = DolDolLewo;
-            if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(direction))
+            		if(abs(ytarget - y) <= _plansza[x][y].get_elongation_move(direction))
 			{
-			    set_object(xtarget, ytarget,
-                            _plansza[x][y].get_team(),
-                            _plansza[x][y].get_type(),
-                            x, y);
-                _plansza[x][y].set_type(0);
+				set_object(xtarget, ytarget,
+                        		_plansza[x][y].get_team(),
+                        		_plansza[x][y].get_type(),
+                        		x, y);
+                		_plansza[x][y].set_type(0);
 				_newest_x=xtarget;
 				_newest_y=ytarget;
 				return 1;
-            }
+            		}
 		}
 		if(y == ytarget)
 		{
 			if(x < xtarget) direction = PrawoDolPrawo;
 			if(x > xtarget)	direction = LewoGoraLewo;
-            if(abs(xtarget - x) <= _plansza[x][y].get_elongation_move(direction))
+            		if(abs(xtarget - x) <= _plansza[x][y].get_elongation_move(direction))
 			{
-			    set_object(xtarget, ytarget,
-                            _plansza[x][y].get_team(),
-                            _plansza[x][y].get_type(),
-                            x, y);
-                _plansza[x][y].set_type(0);
+				set_object(xtarget, ytarget,
+                        		_plansza[x][y].get_team(),
+                         		_plansza[x][y].get_type(),
+                         		x, y);
+                		_plansza[x][y].set_type(0);
 				_newest_x=xtarget;
 				_newest_y=ytarget;
 				return 1;
-            }
+        		}
 		}
-    }
-
+	}
 	return 0;
 }
 
@@ -265,12 +265,12 @@ int Plansza::capture(int x, int y, int xtarget, int ytarget)
         _plansza[x][y].get_type()==Hetman ||
         _plansza[x][y].get_type()==Krol))
 	{
-        if(abs(y-ytarget)!=1 && _plansza[x][y].get_type()==Krol) return 0;
-        if(y < ytarget) direction = Gora;
-        if(y > ytarget)	direction = Dol;
-        if(abs(ytarget - y) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
+        	if(abs(y-ytarget)!=1 && _plansza[x][y].get_type()==Krol) return 0;
+        	if(y < ytarget) direction = Gora;
+        	if(y > ytarget)	direction = Dol;
+        	if(abs(ytarget - y) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
 
-        if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
+        	if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
 		{
 			_plansza[xtarget][ytarget].set_type(0);
 			set_object(xtarget, ytarget,
@@ -286,227 +286,229 @@ int Plansza::capture(int x, int y, int xtarget, int ytarget)
 
 	if((abs(xtarget - x) == abs(ytarget - y)) &&
         (_plansza[x][y].get_type()==Goniec ||
-            _plansza[x][y].get_type()==Hetman ||
-            _plansza[x][y].get_type()==Krol ||
-            _plansza[x][y].get_type()== Pionek))
+         _plansza[x][y].get_type()==Hetman ||
+         _plansza[x][y].get_type()==Krol ||
+         _plansza[x][y].get_type()== Pionek))
 	{
-        if((_plansza[x][y].get_type()==Krol || _plansza[x][y].get_type()== Pionek) && abs(x-xtarget)!=1) return 0;
-        if(x < xtarget && y > ytarget)
-        {
-            if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==0) return 0;
-            direction = DolPrawo;
-        }
-        if(x > xtarget && y > ytarget)
-        {
-            if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==0) return 0;
-            direction = DolLewo;
-        }
-        if(x < xtarget && y < ytarget)
-        {
-            if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==1) return 0;
-            direction = GoraPrawo;
-        }
-        if(x > xtarget && y < ytarget && _plansza[x][y].get_type()!= Pionek )
-        {
-            if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==1) return 0;
-            direction = GoraLewo;
-        }
-
-        if(abs(ytarget - y) != (_plansza[x][y].get_elongation_move(direction) + 1)) return 0;
-        if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
-        {
-            _plansza[xtarget][ytarget].set_type(0);
-            set_object(xtarget, ytarget,
-                    _plansza[x][y].get_team(),
-                    _plansza[x][y].get_type(),
-                x, y);
-            _plansza[x][y].set_type(0);
-            _newest_x=xtarget;
-            _newest_y=ytarget;
-            return 1;
-        }
-    }
-
-    if(y == ytarget && (_plansza[x][y].get_type()==Wieza ||
-        _plansza[x][y].get_type()==Hetman ||
-        _plansza[x][y].get_type()==Krol))
-    {
-        if(abs(y-ytarget)!=1 && _plansza[x][y].get_type()==Krol) return 0;
-        if(x < xtarget) direction = Prawo;
-        if(x > xtarget)	direction = Lewo;
-
-        if(abs(xtarget - x) != (_plansza[x][y].get_elongation_move(direction) + 1)) return 0;
-
-        if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
-        {
-            _plansza[xtarget][ytarget].set_type(0);
-            set_object(xtarget, ytarget,
-                    _plansza[x][y].get_team(),
-                    _plansza[x][y].get_type(),
-                    x, y);
-            _plansza[x][y].set_type(0);
-            _newest_x=xtarget;
-            _newest_y=ytarget;
-            return 1;
-        }
-    }
-
-
-    if(_plansza[x][y].get_type()==Skoczek ||
-        _plansza[x][y].get_type()==Kanclerz ||
-        _plansza[x][y].get_type()==Arcybiskup)
-    {
-        if (x-1==xtarget && y+2==ytarget &&
-            (_plansza[x][y].get_elongation_move(0)==0) &&
-            (_plansza[x][y].get_team()!= _plansza[xtarget][ytarget].get_team()))
-        {
-            _plansza[xtarget][ytarget].set_type(0);
-            set_object(xtarget, ytarget,
-                    _plansza[x][y].get_team(),
-                    _plansza[x][y].get_type(),
-                    x, y);
-                _plansza[x][y].set_type(0);
-            _newest_x=xtarget;
-            _newest_y=ytarget;
-            return 1;
-        }
-        if (x+1==xtarget && y+2==ytarget &&
-            (_plansza[x][y].get_elongation_move(1)==0) &&
-            (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
-        {
-            _plansza[xtarget][ytarget].set_type(0);
-            set_object(xtarget, ytarget,
-                _plansza[x][y].get_team(),
-                _plansza[x][y].get_type(),
-                x, y);
-            _plansza[x][y].set_type(0);
-            _newest_x=xtarget;
-            _newest_y=ytarget;
-            return 1;
-        }
-        if (xtarget==x+2 && ytarget==y+1 &&
-            (_plansza[x][y].get_elongation_move(2)==0) &&
-            (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
-        {
-            _plansza[xtarget][ytarget].set_type(0);
-            set_object(xtarget, ytarget,
-                _plansza[x][y].get_team(),
-                _plansza[x][y].get_type(),
-                x, y);
-                _plansza[x][y].set_type(0);
-                _newest_x=xtarget;
-                _newest_y=ytarget;
-                return 1;
-        }
-        if (xtarget==x+2 && ytarget==y-1 &&
-            (_plansza[x][y].get_elongation_move(3)==0) &&
-            (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
-        {
-            _plansza[xtarget][ytarget].set_type(0);
-            set_object(xtarget, ytarget,
-                _plansza[x][y].get_team(),
-                _plansza[x][y].get_type(),
-                x, y);
-            _plansza[x][y].set_type(0);
-            _newest_x=xtarget;
-            _newest_y=ytarget;
-            return 1;
-        }
-        if (xtarget==x+1 && ytarget==y-2 &&
-            (_plansza[x][y].get_elongation_move(4)==0) &&
-            (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
-        {
-            _plansza[xtarget][ytarget].set_type(0);
-            set_object(xtarget, ytarget,
-                _plansza[x][y].get_team(),
-                _plansza[x][y].get_type(),
-                x, y);
-            _plansza[x][y].set_type(0);
-            _newest_x=xtarget;
-            _newest_y=ytarget;
-            return 1;
-        }
-        if (xtarget==x-1 && ytarget==y-2 &&
-            (_plansza[x][y].get_elongation_move(5)==0) &&
-            (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
-        {
-            _plansza[xtarget][ytarget].set_type(0);
-            set_object(xtarget, ytarget,
-                _plansza[x][y].get_team(),
-                _plansza[x][y].get_type(),
-                x, y);
-            _plansza[x][y].set_type(0);
-            _newest_x=xtarget;
-            _newest_y=ytarget;
-            return 1;
-        }
-        if (xtarget==x-2 && ytarget==y-1 &&
-            (_plansza[x][y].get_elongation_move(6)==0) &&
-            (_plansza[x][y].get_team()!= _plansza[xtarget][ytarget].get_team()))
-        {
-            _plansza[xtarget][ytarget].set_type(0);
-            set_object(xtarget, ytarget,
-                _plansza[x][y].get_team(),
-                _plansza[x][y].get_type(),
-                x, y);
-                _plansza[x][y].set_type(0);
-                _newest_x=xtarget;
-                _newest_y=ytarget;
-                return 1;
+        	if((_plansza[x][y].get_type()==Krol || _plansza[x][y].get_type()== Pionek) && abs(x-xtarget)!=1) return 0;
+        	if(x < xtarget && y > ytarget)
+        	{
+        		if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==0) return 0;
+            		direction = DolPrawo;
         	}
-        if (xtarget==x-2 && ytarget==y+1 &&
-            (_plansza[x][y].get_elongation_move(7)==0) &&
-            (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
-        {
-            _plansza[xtarget][ytarget].set_type(0);
-            set_object(xtarget, ytarget,
-                _plansza[x][y].get_team(),
-                _plansza[x][y].get_type(),
-                x, y);
-            _plansza[x][y].set_type(0);
-            _newest_x=xtarget;
-            _newest_y=ytarget;
-            return 1;
-        }
+        	if(x > xtarget && y > ytarget)
+        	{
+            		if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==0) return 0;
+            		direction = DolLewo;
+        	}
+        	if(x < xtarget && y < ytarget)
+        	{
+            		if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==1) return 0;
+            		direction = GoraPrawo;
+        	}
+        	if(x > xtarget && y < ytarget && _plansza[x][y].get_type()!= Pionek )
+        	{
+            		if (_plansza[x][y].get_type()== Pionek && _plansza[x][y].get_team()==1) return 0;
+            		direction = GoraLewo;
+        	}
+
+        	if(abs(ytarget - y) != (_plansza[x][y].get_elongation_move(direction) + 1)) return 0;
+        	if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
+        	{
+            		_plansza[xtarget][ytarget].set_type(0);
+            		set_object(xtarget, ytarget,
+                    		_plansza[x][y].get_team(),
+                    		_plansza[x][y].get_type(),
+                		x, y);
+            		_plansza[x][y].set_type(0);
+            		_newest_x=xtarget;
+            		_newest_y=ytarget;
+            		return 1;
+        	}
+    	}
+
+    	if(y == ytarget && (_plansza[x][y].get_type()==Wieza ||
+        	_plansza[x][y].get_type()==Hetman ||
+        	_plansza[x][y].get_type()==Krol))
+    	{
+        	if(abs(y-ytarget)!=1 && _plansza[x][y].get_type()==Krol) return 0;
+        	if(x < xtarget) direction = Prawo;
+        	if(x > xtarget)	direction = Lewo;
+
+	        if(abs(xtarget - x) != (_plansza[x][y].get_elongation_move(direction) + 1)) return 0;
+
+        	if (_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team())
+        	{
+            		_plansza[xtarget][ytarget].set_type(0);
+            		set_object(xtarget, ytarget,
+                    		_plansza[x][y].get_team(),
+                    		_plansza[x][y].get_type(),
+                    		x, y);
+            		_plansza[x][y].set_type(0);
+            		_newest_x=xtarget;
+            		_newest_y=ytarget;
+            		return 1;
+        	}
+    	}
+
+
+    	if(_plansza[x][y].get_type()==Skoczek ||
+        	_plansza[x][y].get_type()==Kanclerz ||
+        	_plansza[x][y].get_type()==Arcybiskup)
+    	{
+        	if (x-1==xtarget && y+2==ytarget &&
+            	(_plansza[x][y].get_elongation_move(0)==0) &&
+            	(_plansza[x][y].get_team()!= _plansza[xtarget][ytarget].get_team()))
+        	{
+            		_plansza[xtarget][ytarget].set_type(0);
+            		set_object(xtarget, ytarget,
+                    		_plansza[x][y].get_team(),
+                    		_plansza[x][y].get_type(),
+                    		x, y);
+                	_plansza[x][y].set_type(0);
+            		_newest_x=xtarget;
+            		_newest_y=ytarget;
+            		return 1;
+        	}
+        	if (x+1==xtarget && y+2==ytarget &&
+            	(_plansza[x][y].get_elongation_move(1)==0) &&
+            	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+        	{
+            		_plansza[xtarget][ytarget].set_type(0);
+            		set_object(xtarget, ytarget,
+                		_plansza[x][y].get_team(),
+                		_plansza[x][y].get_type(),
+                		x, y);
+            		_plansza[x][y].set_type(0);
+            		_newest_x=xtarget;
+            		_newest_y=ytarget;
+            		return 1;
+        	}
+        	if (xtarget==x+2 && ytarget==y+1 &&
+            	(_plansza[x][y].get_elongation_move(2)==0) &&
+            	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+        	{
+            		_plansza[xtarget][ytarget].set_type(0);
+            		set_object(xtarget, ytarget,
+                		_plansza[x][y].get_team(),
+                		_plansza[x][y].get_type(),
+                		x, y);
+                	_plansza[x][y].set_type(0);
+                	_newest_x=xtarget;
+                	_newest_y=ytarget;
+                	return 1;
+        	}
+        	if (xtarget==x+2 && ytarget==y-1 &&
+            	(_plansza[x][y].get_elongation_move(3)==0) &&
+            	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+        	{
+            		_plansza[xtarget][ytarget].set_type(0);
+            		set_object(xtarget, ytarget,
+                		_plansza[x][y].get_team(),
+                		_plansza[x][y].get_type(),
+                		x, y);
+            		_plansza[x][y].set_type(0);
+            		_newest_x=xtarget;
+            		_newest_y=ytarget;
+            		return 1;
+        	}
+        	if (xtarget==x+1 && ytarget==y-2 &&
+            	(_plansza[x][y].get_elongation_move(4)==0) &&
+            	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+        	{
+            		_plansza[xtarget][ytarget].set_type(0);
+            		set_object(xtarget, ytarget,
+                		_plansza[x][y].get_team(),
+                		_plansza[x][y].get_type(),
+                		x, y);
+            		_plansza[x][y].set_type(0);
+            		_newest_x=xtarget;
+            		_newest_y=ytarget;
+            		return 1;
+        	}
+        	if (xtarget==x-1 && ytarget==y-2 &&
+            	(_plansza[x][y].get_elongation_move(5)==0) &&
+            	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+        	{
+            		_plansza[xtarget][ytarget].set_type(0);
+            		set_object(xtarget, ytarget,
+                		_plansza[x][y].get_team(),
+                		_plansza[x][y].get_type(),
+                		x, y);
+            		_plansza[x][y].set_type(0);
+            		_newest_x=xtarget;
+            		_newest_y=ytarget;
+            		return 1;
+        	}
+        	if (xtarget==x-2 && ytarget==y-1 &&
+            	(_plansza[x][y].get_elongation_move(6)==0) &&
+            	(_plansza[x][y].get_team()!= _plansza[xtarget][ytarget].get_team()))
+        	{
+            		_plansza[xtarget][ytarget].set_type(0);
+            		set_object(xtarget, ytarget,
+                		_plansza[x][y].get_team(),
+                		_plansza[x][y].get_type(),
+                		x, y);
+                	_plansza[x][y].set_type(0);
+                	_newest_x=xtarget;
+                	_newest_y=ytarget;
+                	return 1;
+        	}
+        	if (xtarget==x-2 && ytarget==y+1 &&
+            	(_plansza[x][y].get_elongation_move(7)==0) &&
+            	(_plansza[x][y].get_team() != _plansza[xtarget][ytarget].get_team()))
+        	{
+            		_plansza[xtarget][ytarget].set_type(0);
+            		set_object(xtarget, ytarget,
+                		_plansza[x][y].get_team(),
+                		_plansza[x][y].get_type(),
+                		x, y);
+            		_plansza[x][y].set_type(0);
+            		_newest_x=xtarget;
+            		_newest_y=ytarget;
+            		return 1;
+        	}
 	}
+	
 	if (_plansza[x][y].get_type()==Arcybiskup && abs(x-xtarget)==abs(y-ytarget))
-    {
-        if(x < xtarget && y < ytarget) direction = GoraGoraPrawo;
-        if(x < xtarget && y > ytarget) direction = PrawoDolPrawo;
-        if(x > xtarget && y > ytarget) direction = DolDolLewo;
-        if(x > xtarget && y < ytarget) direction = LewoGoraLewo;
-        if(abs(ytarget - y) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
-        set_object(xtarget, ytarget,
-                            _plansza[x][y].get_team(),
-                            _plansza[x][y].get_type(),
-                            x, y);
-        _plansza[x][y].set_type(0);
-        _newest_x=xtarget;
-        _newest_y=ytarget;
-        return 1;
-    }
-    if (_plansza[x][y].get_type()==Kanclerz && (x==xtarget || y==ytarget))
-    {
-        if(x == xtarget && y < ytarget) direction = GoraGoraPrawo;
-        if(x == xtarget && y > ytarget) direction = DolDolLewo;
-        if(x > xtarget && y == ytarget) direction = PrawoDolPrawo;
-        if(x < xtarget && y == ytarget) direction = LewoGoraLewo;
-        if(abs(ytarget - y) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
-        set_object(xtarget, ytarget,
-                            _plansza[x][y].get_team(),
-                            _plansza[x][y].get_type(),
-                            x, y);
-        _plansza[x][y].set_type(0);
-        _newest_x=xtarget;
-        _newest_y=ytarget;
-        return 1;
-    }
+    	{
+        	if(x < xtarget && y < ytarget) direction = GoraGoraPrawo;
+        	if(x < xtarget && y > ytarget) direction = PrawoDolPrawo;
+        	if(x > xtarget && y > ytarget) direction = DolDolLewo;
+        	if(x > xtarget && y < ytarget) direction = LewoGoraLewo;
+        	if(abs(ytarget - y) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
+        	set_object(xtarget, ytarget,
+                	_plansza[x][y].get_team(),
+                        _plansza[x][y].get_type(),
+                        x, y);
+        	_plansza[x][y].set_type(0);
+        	_newest_x=xtarget;
+        	_newest_y=ytarget;
+        	return 1;
+    	}
+	
+    	if (_plansza[x][y].get_type()==Kanclerz && (x==xtarget || y==ytarget))
+    	{
+        	if(x == xtarget && y < ytarget) direction = GoraGoraPrawo;
+        	if(x == xtarget && y > ytarget) direction = DolDolLewo;
+        	if(x > xtarget && y == ytarget) direction = PrawoDolPrawo;
+        	if(x < xtarget && y == ytarget) direction = LewoGoraLewo;
+        	if(abs(ytarget - y) != _plansza[x][y].get_elongation_move(direction) + 1) return 0;
+        	set_object(xtarget, ytarget,
+                	_plansza[x][y].get_team(),
+                        _plansza[x][y].get_type(),
+                        x, y);
+        	_plansza[x][y].set_type(0);
+        	_newest_x=xtarget;
+        	_newest_y=ytarget;
+        	return 1;
+    	}
 	return 0;
 }
 
 void Plansza::draw(void)
 {
-    std::string color;
+    	std::string color;
 	std::cout <<"     ";
 	SetColor("D0");
 	char znak;
@@ -563,7 +565,6 @@ void Plansza::draw(void)
         	}
 
 		SetColor("2D");
-
 
 		std::cout << "--" << y+1 << "\n";
 
