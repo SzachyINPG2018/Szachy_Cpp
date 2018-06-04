@@ -18,7 +18,7 @@ using std::vector;
 
 int main()
 {
-    int choice;
+    	int choice;
 	cout <<	"------------------------" << endl;
 	cout << "-------- SZACHY --------" << endl;
 	cout <<	"------------------------" << endl;
@@ -90,10 +90,10 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
             		}
 
 			if(who_s == 0)
-				{
-					who_s = 1;
-					continue;
-				}
+			{
+				who_s = 1;
+				continue;
+			}
 			if(who_s == 1) who_s = 0;
 		}
 	}
@@ -156,14 +156,79 @@ Ruch21:				cout << "Zle wprowadzony ruch\n";
             		}
 
 			if(who_s == 0)
-				{
-					who_s = 1;
-					continue;
-				}
+			{
+				who_s = 1;
+				continue;
+			}
 			if(who_s == 1) who_s = 0;
 		}
 	}
+	if(choice == 3)
+	{
+		Plansza plansza1(10, 10);
+        	Plansza10x10 init(plansza1);		//te dwie linie to utworzenie planszy 10x10 i ustawienie figur
+        	string move;
+        	int who_s=0;
+        	int x=0, y=0, type=0, xt=0, yt=0;
+        	vector<string> team_m = {"Biale", "Czarne"};
+        	//cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		cout << "Biale rozpoczynaja rozgrywke\n\n";
+		while(1)
+		{
+			cout << "\n";
+			move = "";
+			plansza1.draw(); //metoda która rysuje plansze
+Ruch3:      		cout << "\n" << team_m[who_s]<<" podaj ruch: ";
+			cin >> move; //ruch np A1WA3
 
+			if(move == "exit") return 0; //wyjscie z gry
+			if(move[5] != '\0' || move[0] == '\0' || move[1] == '\0' ||
+				move[2] == '\0' || move[3] == '\0' || move[4] == '\0' )
+			{
+Ruch31:			cout << "Zle wprowadzony ruch\n";
+				goto Ruch3;
+			}
+			if(move[0]<'A') x = (move[0]-'0');
+			else if(move[0]<'a') x = (move[0]-'A'+1);
+			else 			x = (move[0]-'a'+1);
+
+			y = ( move[1] - '0' );
+
+			type = 0;
+			if(move[2] == 'K' || move[2] == 'k')	type = Krol;
+			if(move[2] == 'H' || move[2] == 'h')	type = Hetman;
+			if(move[2] == 'W' || move[2] == 'w')	type = Wieza;
+			if(move[2] == 'G' || move[2] == 'g')	type = Goniec;
+			if(move[2] == 'S' || move[2] == 's')	type = Skoczek;
+			if(move[2] == 'P' || move[2] == 'p')	type = Pionek;
+			if(move[2] == 'A' || move[2] == 'a')	type = Arcybiskup;
+			if(move[2] == 'N' || move[2] == 'n')	type = Kanclerz;
+
+			if(plansza1.get_object(x,y).get_type() != type)	goto Ruch31;
+
+			if(move[3]<'A') xt = (move[3]-'0');
+			else if(move[3]<'a') xt = (move[3]-'A'+1);
+			else 			xt = (move[3]-'a'+1);
+                            yt = ( move[4] - '0' );
+
+		//	cout << "X: "  << x  << " Y: "  << y  << " Type: " << type;
+		//	cout << " Xt: " << xt << " Yt: " << yt << endl;
+		//tylko debugowanie
+
+			if(plansza1.get_object(x,y).get_team() != who_s) goto Ruch31;
+			if(!plansza1.make_move(x, y, xt, yt))
+			{
+                    		if(!plansza1.capture(x, y, xt, yt)) goto Ruch31;
+           	 	}
+
+			if(who_s == 0)
+			{
+				who_s = 1;
+				continue;
+			}
+			if(who_s == 1) who_s = 0;
+		}
+	}
 
 	system("PAUSE");
 	return 0;
