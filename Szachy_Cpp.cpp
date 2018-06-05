@@ -208,7 +208,8 @@ Ruch31:			cout << "Zle wprowadzony ruch\n";
 			else if(move[0]<'a') x = (move[0]-'A'+1);
 			else 			x = (move[0]-'a'+1);
 
-			y = ( move[1] - '0' );
+            if  (move[1]=='0') y=10;
+			else y = ( move[1] - '0' );
 
 			type = 0;
 			if(move[2] == 'K' || move[2] == 'k')	type = Krol;
@@ -225,7 +226,8 @@ Ruch31:			cout << "Zle wprowadzony ruch\n";
 			if(move[3]<'A') xt = (move[3]-'0');
 			else if(move[3]<'a') xt = (move[3]-'A'+1);
 			else 			xt = (move[3]-'a'+1);
-                            yt = ( move[4] - '0' );
+            if (move[4]=='0') yt=10;
+            else yt = ( move[4] - '0' );
 
 		//	cout << "X: "  << x  << " Y: "  << y  << " Type: " << type;
 		//	cout << " Xt: " << xt << " Yt: " << yt << endl;
