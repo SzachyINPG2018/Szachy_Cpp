@@ -2,6 +2,8 @@
 
 INSTRUKCJA
 
+!!! Aby wykonywać ruch w programie należy podać poprawnie pięcioelementowy ciąg znaków. Pierwsze dwa oznaczają pozycję pionka, którym chce się poruszyć, trzeci to znak jego typu, a dwa ostatnie oznaczają pozycję, na którą ma się ruszyć. Aby ruszyć się z lub na pozycję o współrzędnej '10' należy wpisać '0' !!!
+
 1. GRA KLASYCZNA
 
 Szachownica składa się z 64 pól. Drugi rząd od strony gracza mieści osiem pionów; rząd najbliższy graczowi zawiera figury rozmiszczone wg następujących zasad:
