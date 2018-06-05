@@ -19,7 +19,7 @@ using std::vector;
 int main()
 {
     	int choice;
-	cout <<	"------------------------" << endl;
+Poczatek:	cout <<	"------------------------" << endl;
 	cout << "-------- SZACHY --------" << endl;
 	cout <<	"------------------------" << endl;
 	cout <<	"Wybor opcji: -----------" << endl;
@@ -86,8 +86,16 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 			if(plansza1.get_object(x,y).get_team() != who_s) goto Ruch1;
 			if(!plansza1.make_move(x, y, xt, yt))
 			{
-                		if(!plansza1.capture(x, y, xt, yt)) goto Ruch1;
-            		}
+                if (plansza1.get_object(xt,yt).get_type() == Krol)
+                {
+                    if(plansza1.capture(x, y, xt, yt)!=0)
+                    {
+                        cout<<"\n\n\nSZACH MAT\n\n\nKONIEC GRY\n\n\n";
+                        goto Poczatek;
+                    }
+                }
+                if(!plansza1.capture(x, y, xt, yt)) goto Ruch1;
+            }
 
 			if(who_s == 0)
 			{
@@ -152,8 +160,16 @@ Ruch21:				cout << "Zle wprowadzony ruch\n";
 			if(plansza1.get_object(x,y).get_team() != who_s) goto Ruch21;
 			if(!plansza1.make_move(x, y, xt, yt))
 			{
-                    		if(!plansza1.capture(x, y, xt, yt)) goto Ruch21;
-            		}
+                if (plansza1.get_object(xt,yt).get_type() == Krol)
+                {
+                    if(plansza1.capture(x, y, xt, yt)!=0)
+                    {
+                        cout<<"\n\n\nSZACH MAT\n\n\nKONIEC GRY\n\n\n";
+                        goto Poczatek;
+                    }
+                }
+                if(!plansza1.capture(x, y, xt, yt)) goto Ruch21;
+            }
 
 			if(who_s == 0)
 			{
@@ -218,8 +234,16 @@ Ruch31:			cout << "Zle wprowadzony ruch\n";
 			if(plansza1.get_object(x,y).get_team() != who_s) goto Ruch31;
 			if(!plansza1.make_move(x, y, xt, yt))
 			{
-                    		if(!plansza1.capture(x, y, xt, yt)) goto Ruch31;
-           	 	}
+                if (plansza1.get_object(xt,yt).get_type() == Krol)
+                {
+                    if(plansza1.capture(x, y, xt, yt)!=0)
+                    {
+                        cout<<"\n\n\nSZACH MAT\n\n\nKONIEC GRY\n\n\n";
+                        goto Poczatek;
+                    }
+                }
+                if(!plansza1.capture(x, y, xt, yt)) goto Ruch31;
+            }
 
 			if(who_s == 0)
 			{
