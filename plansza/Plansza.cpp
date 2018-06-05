@@ -40,14 +40,14 @@ int Plansza::make_move(int x, int y, int xtarget, int ytarget)
                 		{
                 			if(_plansza[xtarget-1][ytarget].get_type()==Pionek &&
                         		abs(_plansza[xtarget-1][ytarget].get_last_y()-ytarget)==2 &&
-                        		_newest_x==xtarget &&
+                        		_newest_x==xtarget-1 &&
                         		_newest_y==ytarget)
                     			{
 						_plansza[xtarget-1][ytarget].set_type(0);
                 			}
                 			if((_plansza[xtarget+1][ytarget].get_type()==Pionek) &&
                         		abs(_plansza[xtarget+1][ytarget].get_last_y()-ytarget)==2 &&
-                        		_newest_x==xtarget &&
+                        		_newest_x==xtarget+1 &&
                         		_newest_y==ytarget)
 					{
 						_plansza[xtarget+1][ytarget].set_type(0);
@@ -101,7 +101,7 @@ int Plansza::make_move(int x, int y, int xtarget, int ytarget)
 			}
 		}
 	}
-	
+
 	if(_plansza[x][y].get_type()==Skoczek ||
         _plansza[x][y].get_type()==Kanclerz ||
         _plansza[x][y].get_type()== Arcybiskup)
@@ -469,7 +469,7 @@ int Plansza::capture(int x, int y, int xtarget, int ytarget)
             		return 1;
         	}
 	}
-	
+
 	if (_plansza[x][y].get_type()==Arcybiskup && abs(x-xtarget)==abs(y-ytarget))
     	{
         	if(x < xtarget && y < ytarget) direction = GoraGoraPrawo;
@@ -486,7 +486,7 @@ int Plansza::capture(int x, int y, int xtarget, int ytarget)
         	_newest_y=ytarget;
         	return 1;
     	}
-	
+
     	if (_plansza[x][y].get_type()==Kanclerz && (x==xtarget || y==ytarget))
     	{
         	if(x == xtarget && y < ytarget) direction = GoraGoraPrawo;
