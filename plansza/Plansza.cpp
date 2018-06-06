@@ -262,7 +262,7 @@ int Plansza::capture(int x, int y, int xtarget, int ytarget)
 	   ytarget<1 || ytarget> _dimension_y ||
 	  (_plansza[xtarget][ytarget].get_type()==0)) return 0;
 
-	if((x==xtarget || y==ytarget) && ( _plansza[x][y].get_type()==Wieza ||
+	if((x==xtarget) && ( _plansza[x][y].get_type()==Wieza ||
         _plansza[x][y].get_type()==Hetman ||
         _plansza[x][y].get_type()==Krol))
 	{
@@ -332,7 +332,7 @@ int Plansza::capture(int x, int y, int xtarget, int ytarget)
         	_plansza[x][y].get_type()==Hetman ||
         	_plansza[x][y].get_type()==Krol))
     	{
-        	if(abs(y-ytarget)!=1 && _plansza[x][y].get_type()==Krol) return 0;
+        	if(abs(x-xtarget)!=1 && _plansza[x][y].get_type()==Krol) return 0;
         	if(x < xtarget) direction = Prawo;
         	if(x > xtarget)	direction = Lewo;
 
