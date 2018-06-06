@@ -162,6 +162,7 @@ Ruch21:				cout << "Zle wprowadzony ruch\n";
 			{
                 if (plansza1.get_object(xt,yt).get_type() == Krol)
                 {
+
                     if(plansza1.capture(x, y, xt, yt)!=0)
                     {
                         cout<<"\n\n\nSZACH MAT\n\n\nKONIEC GRY\n\n\n";
