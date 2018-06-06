@@ -57,6 +57,7 @@ Ruch:       		cout << "\n" << team_m[who_s]<<" podaj ruch: ";
 Ruch1:			cout << "Zle wprowadzony ruch\n";
 				goto Ruch;
 			}
+
 			if(move[0]<'A') x = (move[0]-'0');
 			else if(move[0]<'a') x = (move[0]-'A'+1);
 			else 			x = (move[0]-'a'+1);
@@ -73,30 +74,42 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 
 			if(plansza1.get_object(x,y).get_type() != type)	goto Ruch1;
 
+
+
 			if(move[3]<'A') xt = (move[3]-'0');
 			else if(move[3]<'a') xt = (move[3]-'A'+1);
 			else 			xt = (move[3]-'a'+1);
+
+
 
 			yt = ( move[4] - '0' );
 
 		//	cout << "X: "  << x  << " Y: "  << y  << " Type: " << type;
 		//	cout << " Xt: " << xt << " Yt: " << yt << endl;
 		//tylko debugowanie
+//			cout << xt << endl;
 
 			if(plansza1.get_object(x,y).get_team() != who_s) goto Ruch1;
+
+
+
 			if(!plansza1.make_move(x, y, xt, yt))
 			{
+
+
                 if (plansza1.get_object(xt,yt).get_type() == Krol)
                 {
+
                     if(plansza1.capture(x, y, xt, yt)!=0)
                     {
                         cout<<"\n\n\nSZACH MAT\n\n\nKONIEC GRY\n\n\n";
                         goto Poczatek;
                     }
                 }
+
                 if(!plansza1.capture(x, y, xt, yt)) goto Ruch1;
             }
-
+			system("PAUSE");
 			if(who_s == 0)
 			{
 				who_s = 1;

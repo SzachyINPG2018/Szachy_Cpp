@@ -43,15 +43,16 @@ int Plansza::make_move(int x, int y, int xtarget, int ytarget)
                         		_newest_x==xtarget-1 &&
                         		_newest_y==ytarget)
                     			{
-						_plansza[xtarget-1][ytarget].set_type(0);
-                			}
+                					_plansza[xtarget-1][ytarget].set_type(0);
+                    			}
+                			if(xtarget<_dimension_x)
                 			if((_plansza[xtarget+1][ytarget].get_type()==Pionek) &&
                         		abs(_plansza[xtarget+1][ytarget].get_last_y()-ytarget)==2 &&
                         		_newest_x==xtarget+1 &&
                         		_newest_y==ytarget)
-					{
-						_plansza[xtarget+1][ytarget].set_type(0);
-                			}
+                				{
+                					_plansza[xtarget+1][ytarget].set_type(0);
+                				}
                 		}
                 		set_object(xtarget, ytarget,
                         		_plansza[x][y].get_team(),
