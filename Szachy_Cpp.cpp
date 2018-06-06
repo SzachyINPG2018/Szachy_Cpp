@@ -95,8 +95,6 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 
 			if(!plansza1.make_move(x, y, xt, yt))
 			{
-
-
                 if (plansza1.get_object(xt,yt).get_type() == Krol)
                 {
 
@@ -109,7 +107,7 @@ Ruch1:			cout << "Zle wprowadzony ruch\n";
 
                 if(!plansza1.capture(x, y, xt, yt)) goto Ruch1;
             }
-			system("PAUSE");
+
 			if(who_s == 0)
 			{
 				who_s = 1;
